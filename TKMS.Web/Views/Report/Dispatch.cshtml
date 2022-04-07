@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Dispatch Report";
+}
+
+<partial name="_FilterReport" />
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <input type="hidden" value="dispatchReportDatatable" id="reportName" />
+
+                    <table id="dispatchReportDatatable" class="table datatable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Indent<br /> Number</th>
+                                <th>Date of <br />Indent<br />(Approved by BFIL HO)</th>
+                                <th>Date of <br />Indent<br />(Approved by IBL CPU)</th>
+                                <th>Date of <br />dispatch</th>
+                                <th>Date of <br />dispatch<br /> Report upload<br />(By IBL CPU)</th>
+                                <th>Report <br />uploaded by<br />(IBL CPU user ID)</th>
+                                <th>IBL <br />Branch Code</th>
+                                <th>IBL <br />Branch Name</th>
+                                <th>BFIL<br />Branch code</th>
+                                <th>Scheme <br />Code	</th>
+                                <th>Card Type</th>
+                                <th>Vendor</th>
+                                <th>QTY</th>
+                                <th>A/c stat</th>
+                                <th>A/c End</th>
+                                <th>Scheme Type</th>
+                                <th>Reference <br />Number</th>
+                                <th>Way Bill No</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/report.js"></script>
+}

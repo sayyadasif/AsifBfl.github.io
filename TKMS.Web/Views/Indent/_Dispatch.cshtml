@@ -1,0 +1,133 @@
+﻿@model TKMS.Abstraction.ComplexModels.IndentDetailModel
+
+@inject TKMS.Service.Interfaces.IUserProviderService userProviderService
+@using Core.Utility.Utils
+@using TKMS.Abstraction.Enums;
+
+@{
+    var index = 0;
+}
+
+@Html.HiddenFor(model => model.IndentId)
+
+@foreach (var dispatch in Model.DispatchModels)
+{
+    index++;
+
+    <div class="accordion" id="accordionDispatchDetail">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="@($"headingDispatchDetail{index}")">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="@($"#dispatchDetail{index}")" aria-expanded="true" aria-controls="@($"dispatchDetail{index}")">
+                    Dispatch Detail @(index) - @dispatch.DispatchStatus
+                </button>
+            </h2>
+            <div id="@($"dispatchDetail{index}")" class="accordion-collapse collapse show" aria-labelledby="@($"headingDispatchDetail{index}")" data-bs-parent="accordionDispatchDetail">
+                <div class="accordion-body">
+                    @if (userProviderService.ROKitManagement() && Model.BfilBranchTypeId == BranchTypes.RO.GetHashCode())
+                    {
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                @if (dispatch.DispatchStatusId == DispatchStatuses.Dispatched.GetHashCode())
+                                {
+                                    <button type="button" id="btnReceivedAtRo@(dispatch.DispatchId)" dispatchId="@(dispatch.DispatchId)" class="btn btn-success receivedAtRo">Received at RO</button>
+                                    <button type="button" id="btnDispatchToBranch@(dispatch.DispatchId)" dispatchId="@(dispatch.DispatchId)" class="btn btn-success dispatchToBranch display-none">Dispatch To Branch</button>
+                                }
+                                else if (dispatch.DispatchStatusId == DispatchStatuses.ReceivedAtRo.GetHashCode())
+                                {
+                                    <button type="button" id="btnDispatchToBranch@(dispatch.DispatchId)" dispatchId="@(dispatch.DispatchId)" class="btn btn-success dispatchToBranch">Dispatch To Branch</button>
+                                }
+                            </div>
+                        </div>
+                    }
+                    else if ((userProviderService.BM() || userProviderService.BCM()) &&
+                            ((Model.BfilBranchTypeId == BranchTypes.Branch.GetHashCode() && dispatch.DispatchStatusId == DispatchStatuses.Dispatched.GetHashCode()) ||
+                             (Model.BfilBranchTypeId == BranchTypes.RO.GetHashCode() && dispatch.DispatchStatusId == DispatchStatuses.DispatchToBranch.GetHashCode())))
+                    {
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <button type="button" id="btnReceivedAtBranch@(dispatch.DispatchId)" dispatchId="@(dispatch.DispatchId)" class="btn btn-success receivedAtBranch">Received At Branch</button>
+                            </div>
+                        </div>
+                    }
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <label class="control-label">Dispatch Date </label>
+                            <div class="control-detail">
+                                @CommonUtils.GetFormatedDate(dispatch.DispatchDate)
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label class="control-label">A/c Start</label>
+                            <div class="control-detail">
+                                @dispatch.AccountStart
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label class="control-label">A/c End</label>
+                            <div class="control-detail">
+                                @dispatch.AccountEnd
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label class="control-label">Reference Number</label>
+                            <div class="control-detail">
+                                @dispatch.ReferenceNo
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label class="control-label">Scheme Type</label>
+                            <div class="control-detail">
+                                @dispatch.SchemeType
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label class="control-label">Quantity </label>
+                            <div class="control-detail">
+                                @dispatch.DispatchQty
+                            </div>
+                        </div>
+                    </div>
+                    <partial name="_DispatchWayBill" model="dispatch.DispatchWayBills" />
+                    @if (userProviderService.IBLCPU() && dispatch.DispatchWayBills.Any(w => !w.DeliveryDate.HasValue))
+                    {
+                        <div class="row g-3">
+                            <div class="col-md-12 text-right">
+                                <button type="button" id="btnDeliveryReport@(dispatch.DispatchId)" onclick="uploadDeliveryReport(@(dispatch.DispatchId));" class="btn btn-success">Upload Delivery Report</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="modal fade" id="deliveryReportModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Upload Delivery Report Excel</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <a href="~/Samples/DeliveryReportDetail.xlsx">Sample Excel</a>
+                    </div>
+                    <div class="col-12">
+                        <input type="file" id="deliveryReportFileUpload" class="form-control" accept=".xlsx, .xls" />
+                    </div>
+                    <div class="col-12">
+                        <div class="upload-error" id="reportUploadError">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-brown" id="btnDeliveryReportUpload">Upload Delivery Report</button>
+                <input type="hidden" id="dispatchId" />
+            </div>
+        </div>
+    </div>
+</div>

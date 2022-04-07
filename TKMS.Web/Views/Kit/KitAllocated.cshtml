@@ -1,0 +1,33 @@
+﻿@model TKMS.Abstraction.ComplexModels.KitModel
+@inject TKMS.Service.Interfaces.IUserProviderService userProviderService
+@using TKMS.Abstraction.Enums;
+
+@{
+    ViewData["Title"] = "Kit Allocated Detail";
+}
+<section class="section">
+
+    <div class="row row1">
+        <div class="col-md-1">
+            <a href="/Kit#kitAllocated" class="backBtn"><img src="~/assets/img/next_side.png" /></a>
+        </div>
+        <div class="col-md-6 detail-heading-title">
+            Account Number @Model.IndentNo
+        </div>
+        <div class="col-md-5 text-right detail-heading-status">
+            Status: @Model.KitStatus
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel-group" id="accordion">
+            <partial name="_KitDetail" model="Model" />
+        </div>
+
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/kit.js"></script>
+}

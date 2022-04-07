@@ -1,0 +1,107 @@
+﻿@model TKMS.Abstraction.ComplexModels.BranchTransferModel
+@using Core.Utility.Utils
+
+<div class="accordion" id="accordionTransferKitDetail">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingTransferKitDetail">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#transferKitDetail" aria-expanded="true" aria-controls="transferKitDetail">
+                Transfer Kit Detail
+            </button>
+        </h2>
+        <div id="transferKitDetail" class="accordion-collapse collapse show" aria-labelledby="headingTransferKitDetail" data-bs-parent="#accordionTransferKitDetail">
+            <div class="accordion-body">
+                <div class="row g-3">
+                    <div class="col-4">
+                        <label class="control-label">Indent Number</label>
+                        <div class="control-detail">
+                            @Model.IndentNo
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Account No</label>
+                        <div class="control-detail">
+                            @Model.AccountNo
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Cif No</label>
+                        <div class="control-detail">
+                            @Model.CifNo
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Card Type</label>
+                        <div class="control-detail">
+                            @Model.CardType
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">From Branch Code </label>
+                        <div class="control-detail">
+                            @Model.FromBranchCode
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">From Branch Name </label>
+                        <div class="control-detail">
+                            @Model.FromBranchName
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">To Branch Code</label>
+                        <div class="control-detail">
+                            @Model.ToBranchCode
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Transfer Date </label>
+                        <div class="control-detail">
+                            @CommonUtils.GetFormatedDate(Model.TransferDate)
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Transfer By StaffId </label>
+                        <div class="control-detail">
+                            @Model.TransferByStaffId
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Transfer By Name </label>
+                        <div class="control-detail">
+                            @Model.TransferByName
+                        </div>
+                    </div>
+                    @if (Model.ReceivedDate.HasValue)
+                    {
+                        <div class="col-4">
+                            <label class="control-label">Received By Staff Id </label>
+                            <div class="control-detail">
+                                @Model.ReceivedByStaffId
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label class="control-label">Received By Name </label>
+                            <div class="control-detail">
+                                @Model.ReceivedByName
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label class="control-label">Received Date </label>
+                            <div class="control-detail">
+                                @CommonUtils.GetFormatedDate(Model.ReceivedDate.Value)
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="control-label">Remarks </label>
+                        <div class="control-detail">
+                            @Model.Remarks
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

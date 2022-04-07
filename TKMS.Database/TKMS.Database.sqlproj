@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>TKMS.Database</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{863d2a1f-ca8e-422e-a75d-f7e83b30ca7e}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>TKMS.Database</RootNamespace>
+    <AssemblyName>TKMS.Database</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="LookUp" />
+    <Folder Include="UAT" />
+    <Folder Include="UAT\2022" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\Users.sql" />
+    <Build Include="dbo\Tables\UserRoles.sql" />
+    <Build Include="dbo\Tables\Settings.sql" />
+    <Build Include="dbo\Tables\SchemeCodes.sql" />
+    <Build Include="dbo\Tables\Roles.sql" />
+    <Build Include="dbo\Tables\RejectionReasons.sql" />
+    <Build Include="dbo\Tables\Regions.sql" />
+    <Build Include="dbo\Tables\KitStatuses.sql" />
+    <Build Include="dbo\Tables\IndentStatuses.sql" />
+    <Build Include="dbo\Tables\Documents.sql" />
+    <Build Include="dbo\Tables\DispatchStatuses.sql" />
+    <Build Include="dbo\Tables\CourierStatuses.sql" />
+    <Build Include="dbo\Tables\CardTypes.sql" />
+    <Build Include="dbo\Tables\C5Codes.sql" />
+    <Build Include="dbo\Tables\BranchTypes.sql" />
+    <Build Include="dbo\Tables\Branches.sql" />
+    <Build Include="dbo\Tables\Addresses.sql" />
+    <Build Include="dbo\Stored Procedures\GenerateClass.sql" />
+    <Build Include="dbo\Tables\Indents.sql" />
+    <Build Include="dbo\Tables\IndentAudits.sql" />
+    <Build Include="dbo\Tables\DispatchWayBills.sql" />
+    <Build Include="dbo\Tables\Dispatches.sql" />
+    <None Include="LookUp\Roles.sql" />
+    <None Include="LookUp\Users.sql" />
+    <None Include="LookUp\SchemeCodes.sql" />
+    <None Include="LookUp\C5Codes.sql" />
+    <None Include="LookUp\CardTypes.sql" />
+    <None Include="LookUp\DispatchStatuses.sql" />
+    <None Include="LookUp\IndentStatuses.sql" />
+    <None Include="LookUp\KitStatuses.sql" />
+    <None Include="LookUp\RejectionReasons.sql" />
+    <None Include="LookUp\Settings.sql" />
+    <None Include="LookUp\RoleTypes.sql" />
+    <Build Include="dbo\Tables\RoleTypes.sql" />
+    <None Include="LookUp\CourierStatuses.sql" />
+    <Build Include="dbo\Tables\Kits.sql" />
+    <Build Include="dbo\Tables\KitAudits.sql" />
+    <Build Include="dbo\Tables\BranchDispatches.sql" />
+    <Build Include="dbo\Tables\KitDamageReasons.sql" />
+    <None Include="LookUp\KitDamageReasons.sql" />
+    <Build Include="dbo\Tables\Notifications.sql" />
+    <Build Include="dbo\Tables\Logs.sql" />
+    <Build Include="dbo\Tables\BranchTransfers.sql" />
+    <Build Include="dbo\Tables\SentSmses.sql" />
+    <Build Include="dbo\Tables\DispatchAudits.sql" />
+    <Build Include="dbo\Tables\IWorksKits.sql" />
+    <Build Include="dbo\Tables\KitReturns.sql" />
+    <Build Include="dbo\Tables\NotificationTypes.sql" />
+    <None Include="LookUp\NotificationTypes.sql" />
+    <None Include="UAT\2022\01-TKMS-UAT-Schema.sql" />
+    <None Include="UAT\2022\02-TKMS-UAT-Lookup.sql" />
+    <Build Include="dbo\Tables\SchemeC5Codes.sql" />
+    <None Include="UAT\2022\03-Changes-01022022.sql" />
+    <Build Include="dbo\Tables\IblBranches.sql" />
+    <None Include="UAT\2022\04-IblBranch-15022022.sql" />
+    <Build Include="dbo\Tables\KitAssignedCustomers.sql" />
+    <None Include="UAT\2022\05-KitAssigned-25022022.sql" />
+    <None Include="UAT\2022\06-Changes-07032022.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LocalCompare.scmp" />
+    <None Include="LookUp\BranchTypes.sql" />
+    <None Include="ServerCompare.scmp" />
+  </ItemGroup>
+</Project>

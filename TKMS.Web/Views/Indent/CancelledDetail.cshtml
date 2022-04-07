@@ -1,0 +1,30 @@
+﻿@model TKMS.Abstraction.ComplexModels.IndentDetailModel
+
+@{
+    ViewData["Title"] = "Cancel Detail";
+}
+
+<section class="section">
+
+    <div class="row row1">
+        <div class="col-md-1">
+            <a href="/Indent#indentCancelled" class="backBtn"><img src="~/assets/img/next_side.png" /></a>
+        </div>
+        <div class="col-md-6 detail-heading-title">
+            Indent @Model.IndentNo
+        </div>
+        <div class="col-md-5 text-right detail-heading-status">
+            Status: @Model.IndentStatus
+        </div>
+    </div>
+
+    <div class="row g-3">
+        <partial name="_IndentDetail" model="Model" />
+        <partial name="_Dispatch" model="Model" />
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/indent.js"></script>
+}

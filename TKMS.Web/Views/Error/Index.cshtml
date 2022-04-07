@@ -1,0 +1,17 @@
+﻿@model Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature
+@{
+    ViewData["Title"] = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="section">
+    <div class="row row1">
+
+        <section class="section min-vh-100 d-flex flex-column align-items-center justify-content-center">
+            <h1>@Model.Error.Message</h1>
+            <h2>@Model.Error.StackTrace</h2>
+            <a class="btn" asp-area="" asp-controller="Home" asp-action="Index">Back to home</a>
+            <p>@Model.Error.InnerException</p>
+        </section>
+
+    </div>
+</section>

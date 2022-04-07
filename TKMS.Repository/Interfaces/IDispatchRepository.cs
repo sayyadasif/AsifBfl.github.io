@@ -1,0 +1,18 @@
+using Core.Repository;
+using Core.Repository.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TKMS.Abstraction.ComplexModels;
+using TKMS.Abstraction.Models;
+
+namespace TKMS.Repository.Interfaces
+{
+    public interface IDispatchRepository : IRepository<Dispatch>
+    {
+        Task<PagedList> GetDispatchPaged(Pagination pagination);
+        Task<bool> IsAllDispatchReceived(long indentId);
+    }
+}

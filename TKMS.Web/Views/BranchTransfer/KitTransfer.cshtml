@@ -1,0 +1,32 @@
+﻿@model TKMS.Abstraction.ComplexModels.KitModel
+
+@{
+    ViewData["Title"] = "Kit Transfer Detail";
+}
+
+<section class="section">
+    <div class="row row1">
+        <div class="col-md-1">
+            <a href="/BranchTransfer#kitTransfer" class="backBtn"><img src="~/assets/img/next_side.png" /></a>
+        </div>
+        <div class="col-md-6 detail-heading-title">
+            Account Number @Model.IndentNo
+        </div>
+        <div class="col-md-5 text-right detail-heading-status">
+            Status: @Model.KitStatus
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-lg-12">
+            <div class="panel-group" id="accordion">
+                <partial name="_KitDetail" model="Model" />
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/branchtransfer.js"></script>
+}

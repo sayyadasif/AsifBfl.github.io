@@ -1,0 +1,416 @@
+﻿@model TKMS.Abstraction.ComplexModels.KitDisplayModel
+
+@{
+    ViewData["Title"] = "Kits";
+}
+
+<section class="section">
+    <div class="row row1">
+        <div class="col-lg-12">
+            <!-- Tabs navs -->
+            <ul class="nav nav-pills mb-3" id="kitTab" role="tablist">
+
+                @if (Model.KitDestructionHo)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="kitDestructionHoTab"
+                           data-toggle="tab"
+                           href="#kitDestructionHo"
+                           role="tab"
+                           aria-controls="kitDestructionHo"
+                           aria-selected="true"
+                           statusId="5"
+                           viewPage="KitDestruction">Kit Destruction</a>
+                    </li>
+                }
+
+                @if (Model.KitDestructionApproved)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="kitDestructionApprovedTab"
+                           data-toggle="tab"
+                           href="#kitDestructionApproved"
+                           role="tab"
+                           aria-controls="kitDestructionApproved"
+                           aria-selected="true"
+                           statusId="6"
+                           viewPage="Approved">Destruction Approved</a>
+                    </li>
+                }
+
+                @if (Model.KitDestructionRejected)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="kitDestructionRejectedTab"
+                           data-toggle="tab"
+                           href="#kitDestructionRejected"
+                           role="tab"
+                           aria-controls="kitDestructionRejected"
+                           aria-selected="true"
+                           statusId="1"
+                           destruction-approved="false">Destruction Rejected</a>
+                    </li>
+                }
+
+                @if (Model.KitDestructionCpu)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="kitDestructionCpuTab"
+                           data-toggle="tab"
+                           href="#kitDestructionCpu"
+                           role="tab"
+                           aria-controls="kitDestructionCpu"
+                           aria-selected="true"
+                           statusId="6"
+                           viewPage="DestructionCpu">Kit Destruction</a>
+                    </li>
+                }
+
+                @if (Model.KitDetail)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="kitDetailTab"
+                           data-toggle="tab"
+                           href="#kitDetail"
+                           role="tab"
+                           aria-controls="kitDetail"
+                           aria-selected="true"
+                           statusId="1,2">Kit Details</a>
+                    </li>
+                }
+
+                @if (Model.KitForAllocation)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="kitForAllocationTab"
+                           data-toggle="tab"
+                           href="#kitForAllocation"
+                           role="tab"
+                           aria-controls="kitForAllocation"
+                           aria-selected="true"
+                           statusId="2">Kit For Allocations</a>
+                    </li>
+                }
+
+                @if (Model.KitAllocated)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="kitAllocatedTab"
+                           data-toggle="tab"
+                           href="#kitAllocated"
+                           role="tab"
+                           aria-controls="kitAllocated"
+                           aria-selected="true"
+                           statusId="3,4">Allocated Kits</a>
+                    </li>
+                }
+
+                @if (Model.KitAllocatedStaffWise)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="kitAllocatedStaffWiseTab"
+                           data-toggle="tab"
+                           href="#kitAllocatedStaffWise"
+                           role="tab"
+                           aria-controls="kitAllocatedStaffWise"
+                           aria-selected="true"
+                           statusId="3,4">Allocated Kits Staff</a>
+                    </li>
+                }
+
+                @if (Model.KitDestruction)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="kitDestructionTab"
+                           data-toggle="tab"
+                           href="#kitDestruction"
+                           role="tab"
+                           aria-controls="kitDestruction"
+                           aria-selected="true"
+                           statusId="5,6">Destruction</a>
+                    </li>
+                }
+
+                @if (Model.KitDetailStaff)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="kitDetailStaffTab"
+                           data-toggle="tab"
+                           href="#kitDetailStaff"
+                           role="tab"
+                           aria-controls="kitDetailStaff"
+                           aria-selected="true"
+                           statusId="3,4">Kits</a>
+                    </li>
+                }
+
+                @if (Model.KitAssigned)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="kitAssignedTab"
+                           data-toggle="tab"
+                           href="#kitAssigned"
+                           role="tab"
+                           aria-controls="kitAssigned"
+                           aria-selected="true"
+                           statusId="4">Kit Assigned</a>
+                    </li>
+                }
+
+            </ul>
+            <!-- Tabs navs -->
+        </div>
+    </div>
+
+    <partial name="_KitFilters" />
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Tabs content -->
+                    <div class="tab-content" id="kitTabContent">
+
+                        <div class="tab-pane fade show"
+                             id="kitDestructionHo"
+                             role="tabpanel"
+                             aria-labelledby="kitDestructionHo">
+                            <table id="kitDestructionHoDatatable" class="table datatable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Account<br />Number</th>
+                                        <th>CIF<br />Number</th>
+                                        <th>Branch<br />Code</th>
+                                        <th>Destruction<br />Reason</th>
+                                        <th class="no-sort">Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade show"
+                             id="kitDestructionApproved"
+                             role="tabpanel"
+                             aria-labelledby="kitDestructionApproved">
+                            <table id="kitDestructionApprovedDatatable" class="table datatable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Account<br />Number</th>
+                                        <th>CIF<br />Number</th>
+                                        <th>Branch<br />Code</th>
+                                        <th>Destruction<br />Reason</th>
+                                        <th class="no-sort">Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade show"
+                             id="kitDestructionRejected"
+                             role="tabpanel"
+                             aria-labelledby="kitDestructionRejected">
+                            <table id="kitDestructionRejectedDatatable" class="table datatable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Account<br />Number</th>
+                                        <th>CIF<br />Number</th>
+                                        <th>Branch<br />Code</th>
+                                        <th>Destruction<br />Reason</th>
+                                        <th>Rejection<br />Reason</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade show"
+                             id="kitDestructionCpu"
+                             role="tabpanel"
+                             aria-labelledby="kitDestructionCpu">
+                            <table id="kitDestructionCpuDatatable" class="table datatable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Account<br />Number</th>
+                                        <th>CIF<br />Number</th>
+                                        <th>Branch<br />Code</th>
+                                        <th>Destruction<br />Reason</th>
+                                        <th class="no-sort">Action</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+
+                        <div class="tab-pane fade show"
+                             id="kitDetail"
+                             role="tabpanel"
+                             aria-labelledby="kitDetail">
+                            <table id="kitDetailDatatable" class="table datatable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Indent<br />Number</th>
+                                        <th>Account<br />Number</th>
+                                        <th>CIF<br />Number</th>
+                                        <th>Branch<br />Code</th>
+                                        <th>Branch<br />Name</th>
+                                        <th>BFIL<br />Branch Code</th>
+                                        <th>Card<br />Type</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade show"
+                             id="kitForAllocation"
+                             role="tabpanel"
+                             aria-labelledby="kitForAllocation">
+                            <div class="text-right">
+                                <button type="button" id="btnAllocateKits" class="btn btn-success allocate_btn">Allocate</button>
+                            </div>
+                            <table id="kitForAllocationDatatable" class="table datatable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th class="no-sort"></th>
+                                        <th>Indent<br />Number</th>
+                                        <th>Account<br />Number</th>
+                                        <th>CIF<br />Number</th>
+                                        <th>Branch<br />Code</th>
+                                        <th>Branch<br />Name</th>
+                                        <th>BFIL<br />Branch Code</th>
+                                        <th>Card<br />Type</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade show"
+                             id="kitAllocated"
+                             role="tabpanel"
+                             aria-labelledby="kitAllocated">
+                            <div class="text-right">
+                                <button type="button" class="btn btn-success ReturnKit" id="btnReturn">Return Kit</button>&nbsp;&nbsp;
+                                <button type="button" class="btn btn-success DestructKit" id="btnDestruct">Destruct Kit</button>
+
+                            </div>
+                            <table id="kitAllocatedDatatable" class="table datatable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th class="no-sort"></th>
+                                        <th>Status</th>
+                                        <th>Indent<br />Number</th>
+                                        <th>Account<br />Number</th>
+                                        <th>CIF<br />Number</th>
+                                        <th>Staff<br />Id</th>
+                                        <th>Staff<br />Name</th>
+                                        <th>Allocated<br />Date</th>
+                                        <th class="no-sort">Age</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade show"
+                             id="kitAllocatedStaffWise"
+                             role="tabpanel"
+                             aria-labelledby="kitAllocatedStaffWise">
+                            <table id="kitAllocatedStaffWiseDatatable" class="table datatable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Staff<br />Id</th>
+                                        <th>Staff<br />Name</th>
+                                        <th>No of Kits<br />Allocated</th>
+                                        <th>No of Kits<br />Assigned</th>
+                                        <th>No of Kits<br />Remaining</th>
+                                        <th class="no-sort"></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade show"
+                             id="kitDestruction"
+                             role="tabpanel"
+                             aria-labelledby="kitDestruction">
+                            <table id="kitDestructionDatatable" class="table datatable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Indent<br />Number</th>
+                                        <th>Account<br />Number</th>
+                                        <th>CIF<br />Number</th>
+                                        <th>Date</th>
+                                        <th>Branch<br />Code</th>
+                                        <th>Branch<br />Name</th>
+                                        <th>BFIL<br />Branch Code</th>
+                                        <th>Card<br />Type</th>
+                                        <th>Destruction<br />Reason</th>
+                                        <th>Approved</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade show"
+                             id="kitDetailStaff"
+                             role="tabpanel"
+                             aria-labelledby="kitDetailStaff">
+                            <table id="kitDetailStaffDatatable" class="table datatable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Account<br />Number</th>
+                                        <th>CIF<br />Number</th>
+                                        <th>Allocated<br />Date</th>
+                                        <th class="no-sort">Age</th>
+                                        <th>Assigned<br />To</th>
+                                        <th class="no-sort"></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane fade show"
+                             id="kitAssigned"
+                             role="tabpanel"
+                             aria-labelledby="kitAssigned">
+                            <table id="kitAssignedDatatable" class="table datatable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Account<br />Number</th>
+                                        <th>CIF<br />Number</th>
+                                        <th>Customer<br />Name</th>
+                                        <th>Assigned<br />Date</th>
+                                        <th>Card<br />Type</th>
+                                        <th class="no-sort"></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="~/js/kit.js"></script>
+}

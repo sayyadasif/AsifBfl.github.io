@@ -1,0 +1,105 @@
+﻿@model TKMS.Abstraction.ComplexModels.TransferModel
+
+@{
+    ViewData["Title"] = "Transferring Kit";
+}
+
+<section class="section">
+    <div class="row row1">
+        <div class="col-md-1">
+            <a href="/BranchTransfer#kitTransfer" class="backBtn"><img src="~/assets/img/next_side.png" /></a>
+        </div>
+        <div class="col-md-6 detail-heading-title">
+            Transferring Kit (@Model.Kits.Count)
+        </div>
+        <div class="col-md-5 text-right detail-heading-status">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    @using (Html.BeginForm("BranchTransfer", "BranchTransfer", new { ReturnUrl = ViewBag.ReturnUrl },
+FormMethod.Post, true, new { id = "formBranchTransfer", enctype = "multipart/form-data", @class = "form-horizontal form-bordered" }))
+                    {
+                        @Html.HiddenFor(model => model.KitIds)
+
+                        <div class="panel-body">
+
+                            <table class="table datatable" id="transferKitDatatable">
+                                <thead>
+                                    <tr>
+                                        <th>Account<br />Number</th>
+                                        <th>CIF<br />Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var kit in Model.KitDetails)
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                @kit.AccountNo
+                                            </td>
+                                            <td>
+                                                @kit.CifNo
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                            <div class="row g-3">
+                                <div class="col-4">
+                                    <label class="control-label">Branch Code <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.DropDownListFor(model => model.ToBranchId, (List<SelectListItem>)ViewBag.Branches, (new { @class = "form-control dropdownlist", onchange = "GetBranchDetail(this);", }))
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.ToBranchId)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <label class="control-label">Branch Name <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.ToBranchName, (new { @class = "form-control ", placeholder = "Branch Name", }))
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.ToBranchName)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="control-label">Remarks (if any)</label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.Remarks, (new { @class = "form-control ", placeholder = "Remarks", }))
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.Remarks)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-12 text-right">
+                                    <button type="button" class="btn default cancelKit"
+                                            onclick="javascript: window.location.href = '/BranchTransfer#kitTransfer';">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="btn btn-primary legitRipple TransferBtn">Submit<i class="icon-arrow-right14 position-right"></i></button>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/branchtransfer.js"></script>
+}

@@ -1,0 +1,62 @@
+﻿@model TKMS.Abstraction.ComplexModels.IndentDetailModel
+
+@{
+    ViewData["Title"] = "Indent Detail";
+}
+
+@Html.HiddenFor(model => model.IndentId)
+@Html.HiddenFor(model => model.IndentStatusId)
+
+<section class="section">
+
+
+    <div class="row row1">
+        <div class="col-md-1">
+            <a href="/Indent#indentForDispatched" class="backBtn"><img src="~/assets/img/next_side.png" /></a>
+        </div>
+        <div class="col-md-6 detail-heading-title">
+            Indent @Model.IndentNo
+        </div>
+        <div class="col-md-5 text-right detail-heading-status">
+            Status: @Model.IndentStatus
+        </div>
+    </div>
+    <div class="row g-3">
+        <partial name="_IndentDetail" model="Model" />
+        <partial name="_Dispatch" model="Model" />
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-right">
+            <button type="button" onclick="displayModel('cancelModal')" class="btn btn-danger cancelbtn">Cancel Indent</button>&nbsp;&nbsp;
+            <button type="button" class="btn btn-success dispatchbtn" id="btnIndentDispatch">Dispatch</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="cancelModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cancelling Indent @Model.IndentNo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="CancelRemarks" class="form-label">Remarks (if any)</label>
+                            <input type="text" class="form-control" id="CancelRemarks" placeholder="Remarks">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close_btn" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-brown cancel_btn" id="btnCancelIndent">Cancel Indent</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/indent.js"></script>
+}

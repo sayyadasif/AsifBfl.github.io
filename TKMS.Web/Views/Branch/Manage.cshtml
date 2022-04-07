@@ -1,0 +1,210 @@
+@model TKMS.Abstraction.Models.Branch
+@{
+    ViewData["Title"] = (Model.BranchId > 0) ? "Edit Branch" : "Create New Branch ";
+}
+
+<section class="section">
+
+    @using (Html.BeginForm("Manage", "Branch", new { ReturnUrl = ViewBag.ReturnUrl },
+FormMethod.Post, true, new { id = "formBranch", enctype = "multipart/form-data", @class = "form-horizontal form-bordered" }))
+    {
+        @Html.HiddenFor(model => model.BranchId)
+        @Html.HiddenFor(model => model.AddressId)
+        <div class="panel panel-flat">
+
+            <div class="row row1">
+                <div class="col-md-1">
+                    <a href="/Branch" class="backBtn backBtnIndent"><img src="~/assets/img/next_side.png" /></a>
+                </div>
+
+                <div class="col-md-6 detail-heading-title">
+                    <div class="panel-heading">
+                        <h5 class="panel-title createNewIndentTitle" id="panel-title">@ViewBag.Title<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+                    </div>
+                </div>
+                <div class="col-md-5 text-right detail-heading-status ">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-4 mt-4">
+                                    <label class="control-label form-label Indent-text">Branch Name <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.BranchName, new { @class = "form-control", placeholder = "Branch Name" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.BranchName)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4  mt-4">
+                                    <label class="control-label form-label Indent-text">Branch Code <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.BranchCode, new { @class = "form-control", placeholder = "Branch Code" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.BranchCode)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mt-4">
+                                    <label class="control-label form-label Indent-text">IBL Branch <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.DropDownListFor(model => model.IblBranchId, (List<SelectListItem>)ViewBag.IblBranches, (new { @class = "form-control dropdownlist Indent-dropdown" }))
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.IblBranchId)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-4 mt-4">
+                                    <label class="control-label form-label Indent-text">Scheme Code <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.DropDownListFor(model => model.SchemeCodeId, (List<SelectListItem>)ViewBag.SchemeCodes, (new { @class = "form-control dropdownlist Indent-dropdown", onchange = "GetC5Codes(this); " }))
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.SchemeCodeId)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mt-4">
+                                    <label class="control-label form-label Indent-text">C5 Code <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.DropDownListFor(model => model.C5CodeId, (List<SelectListItem>)ViewBag.C5Codes, (new { @class = "form-control dropdownlist Indent-dropdown", onchange = "GetCardType(this);" }))
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.C5CodeId)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mt-4">
+                                    <label class="control-label form-label Indent-text">Card Type <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.DropDownListFor(model => model.CardTypeId, (List<SelectListItem>)ViewBag.CardTypes, (new { @class = "form-control dropdownlist Indent-dropdown" }))
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.CardTypeId)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-4 mt-4">
+                                    <label class="control-label form-label Indent-text">Branch Type <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.DropDownListFor(model => model.BranchTypeId, (List<SelectListItem>)ViewBag.BranchTypes, (new { @class = "form-control dropdownlist" }))
+
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.BranchTypeId)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4  mt-4">
+                                    <label class="control-label form-label Indent-text">Region <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.DropDownListFor(model => model.RegionId, (List<SelectListItem>)ViewBag.Regions, (new { @class = "form-control dropdownlist" }))
+
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.RegionId)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4  mt-4">
+                                    <label class="control-label form-label Indent-text">Ifsc Code <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.IfscCode, new { @class = "form-control", placeholder = "Ifsc Code" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.IfscCode)
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-8 mt-4">
+                                    <label class="control-label form-label Indent-text">Address <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.Address.AddressDetail, new { @class = "form-control", placeholder = "Address" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.Address.AddressDetail)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mt-4">
+                                    <label class="control-label form-label Indent-text">Pincode <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.Address.PinCode, new { @class = "form-control", placeholder = "Pincode" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.Address.PinCode)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-md-6 mt-4">
+                                    <label class="control-label form-label Indent-text">Region</label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.Address.Region, new { @class = "form-control", placeholder = "Region" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.Address.Region)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mt-4">
+                                    <label class="control-label form-label Indent-text">Zone</label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.Address.Zone, new { @class = "form-control", placeholder = "Zone" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.Address.Zone)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3">
+
+                                <div class="col-md-6 mt-4">
+                                    <label class="control-label form-label Indent-text">District</label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.Address.District, new { @class = "form-control", placeholder = "District" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.Address.District)
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mt-4">
+                                    <label class="control-label form-label Indent-text">State</label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.Address.State, new { @class = "form-control", placeholder = "State" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.Address.State)
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-12 text-right">
+                                    <button type="button" class="btn default cancelIndent" onclick="javascript: window.location.href = '@Url.Action("Index")';">Cancel</button>
+                                    <button type="submit" class="btn btn-primary legitRipple SubmitIndent">Submit<i class="icon-arrow-right14 position-right"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/branch.js"></script>
+}

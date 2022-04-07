@@ -1,0 +1,19 @@
+﻿@model TKMS.Abstraction.ComplexModels.DisplayCard
+
+<div class="col-xxl-3 col-md-3">
+    <div class="card info-card">
+        <div class="card-body">
+            <h5 class="card-title">@Html.Raw(@Model.CardTitle)</h5>
+
+            <div class="d-flex align-items-center">
+                <div class="ps-3">
+                    <h6>@Html.Raw(@Model.CardDetail)</h6>
+                </div>
+            </div>
+                <div class="viewBtnClass">
+                    <span class="text-success small pt-1 fw-bold"><a class="viewBtnIndent" href="@Model.CardUrl">@Model.CardLinkText</a></span>
+                </div>
+            
+        </div>
+    </div>
+</div>

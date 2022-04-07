@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Received At Branch Report";
+}
+
+<partial name="_FilterReport" />
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <input type="hidden" value="receivedAtBranchReportDatatable" id="reportName" />
+
+                    <table id="receivedAtBranchReportDatatable" class="table datatable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Indent<br />Number</th>
+                                <th>Date of <br />Indent <br />(Approved by BFIL)</th>
+                                <th>Date of <br />Indent <br />(Approved by IBL)</th>
+                                <th>Date of <br />Dispatch</th>
+                                <th>Date of <br />Dispatch report <br />upload (By IBL)</th>
+                                <th>Report <br />uploaded by <br />(IBL CPU user ID)</th>
+                                <th>IBL <br />Branch Code</th>
+                                <th>IBL <br />Branch Name</th>
+                                <th>BFIL<br />Branch code</th>
+                                <th>Scheme Code</th>
+                                <th>Card Type</th>
+                                <th>Vendor</th>
+                                <th>QTY</th>
+                                <th>A/c stat</th>
+                                <th>A/c End</th>
+                                <th>Scheme Type</th>
+                                <th>Date</th>
+                                <th>Reference <br />Number</th>
+                                <th>Way Bill <br />No</th>
+                                <th>Status at <br />Branch</th>
+                                <th>Branch User</th>
+                                <th>Branch User<br />confirmation</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="~/js/report.js"></script>
+}

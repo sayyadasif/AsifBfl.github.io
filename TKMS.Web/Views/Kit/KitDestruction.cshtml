@@ -1,0 +1,87 @@
+﻿@model TKMS.Abstraction.ComplexModels.KitModel
+@inject TKMS.Service.Interfaces.IUserProviderService userProviderService
+@using TKMS.Abstraction.Enums;
+
+@{
+    ViewData["Title"] = "Kit Destruction";
+}
+
+@Html.HiddenFor(model => model.KitId)
+@Html.HiddenFor(model => model.KitStatusId)
+
+<section class="section">
+
+    <div class="row row1">
+        <div class="col-md-1">
+            <a href="/Kit#kitDestructionHo" class="backBtn"><img src="~/assets/img/next_side.png" /></a>
+        </div>
+        <div class="col-md-6 detail-heading-title">
+            Account Number @Model.IndentNo
+        </div>
+        <div class="col-md-5 text-right detail-heading-status">
+            <button type="button" onclick="displayModel('rejectModal')" class="btn btn-danger rejectBtn">Reject</button>&nbsp;&nbsp;
+            <button type="button" onclick="displayModel('approveModal')" class="btn btn-success approve_btn">Approve</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 reasonClass">
+            Destruction Reason: @Model.KitDamageReason
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel-group" id="accordion">
+            <partial name="_KitDetail" model="Model" />
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="approveModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Approving Kit @Model.AccountNo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="ApproveRemarks" class="form-label">Remarks (if any)</label>
+                            <input type="text" class="form-control" id="ApproveRemarks" placeholder="Remarks">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close_btn" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary approveBtn1" id="btnApproveDestruction">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="rejectModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Rejecting Kit @Model.AccountNo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="RejectRemarks" class="form-label">Remarks (if any)</label>
+                            <input type="text" class="form-control" id="RejectRemarks" placeholder="Remarks">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close_btn" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-brown reject_btn" id="btnRejectDestruction">Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/kit.js"></script>
+}

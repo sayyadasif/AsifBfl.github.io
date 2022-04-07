@@ -1,0 +1,60 @@
+﻿
+<div class="KitsShow btn-filter">
+    <button class="showFilterBtn" id="showBtn" value="Show Filters" onclick="showFilter()">
+        <span class="FilterName"><img src="~/assets/img/Filter.png" />Show Filters</span>
+    </button>
+</div>
+
+
+<div class="row display-none filter-detail" id="KitsFilter">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="HideBtn">
+                    <button class="hideFilterBtn" id="hideBtn" value="Hide Filters" onclick="hideFilter()">
+                        <span class="FilterName" style=" margin-left: -77px"><img src="~/assets/img/Filter.png" />Hide Filters</span>
+                    </button>
+                </div>
+                <div class="row g-3">
+                    <div class="col-2" id="indentNoFilter">
+                        <input type="text" class="form-control" placeholder="Indent Number" id="indentNo" />
+                    </div>
+                    <div class="col-2" id="accountNoFilter">
+                        <input type="text" class="form-control" placeholder="Account Number" id="accountNo" />
+                    </div>
+                    <div class="col-2" id="cifNoFilter">
+                        <input type="text" class="form-control" placeholder="Cif Number" id="cifNo" />
+                    </div>
+                    <div class="col-2" id="kitDateFilter">
+                        <input type="text" class="form-control datepicker" placeholder="Date" id="kitDate" />
+                    </div>
+                    <div class="col-2" id="allocatedDateFilter">
+                        <input type="text" class="form-control datepicker" placeholder="Allocated Date" id="allocatedDate" />
+                    </div>
+                    <div class="col-2" id="assignedDateFilter">
+                        <input type="text" class="form-control datepicker" placeholder="Assigned Date" id="assignedDate" />
+                    </div>
+                    <div class="col-2" id="branchIdFilter">
+                        @Html.DropDownList("branchId", (List<SelectListItem>)ViewBag.Branches, (new { @class = "form-control dropdownlist", }))
+                    </div>
+                    <div class="col-2" id="cardTypeIdFilter">
+                        @Html.DropDownList("cardTypeId", (List<SelectListItem>)ViewBag.CardTypes, (new { @class = "form-control dropdownlist", }))
+                    </div>
+                    <div class="col-2" id="bfilBranchIdFilter">
+                        @Html.DropDownList("bfilBranchId", (List<SelectListItem>)ViewBag.BfilBranches, (new { @class = "form-control dropdownlist", }))
+                    </div>
+                    <div class="col-2" id="allocatedToIdFilter">
+                        @Html.DropDownList("allocatedToId", (List<SelectListItem>)ViewBag.Staffs, (new { @class = "form-control dropdownlist", }))
+                    </div>
+                    <div class="col-2" id="kitDamageReasonIdFilter">
+                        @Html.DropDownList("kitDamageReasonId", (List<SelectListItem>)ViewBag.DamageReasons, (new { @class = "form-control dropdownlist", }))
+                    </div>
+                    <div class="col-4">
+                        <button id="btnKitFilter" class="btn btn-success searchBtn">Apply Filters</button>&nbsp;
+                        <button id="btnKitFilterClear" class="btn btn-secondary clearBtn">Clear All Filters</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

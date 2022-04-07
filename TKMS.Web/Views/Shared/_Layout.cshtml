@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TKMS</title>
+
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <partial name="_CssPartial" />
+
+</head>
+<body>
+    <partial name="_BusyIndicatorPartial" />
+    <partial name="_Header" />
+    <partial name="_SideMenu" />
+
+    <main id="main" class="main">
+        <div class="row rowBox">
+            <div class="column1">
+                <div class="rectBox">
+
+                    <button class="openbtn toggle-sidebar-btn" style="color: #98272A" onclick="openNav()">
+                        <img class="sidebar_toggle rotate" id="toggleBtn" src="~/assets/img/next_sidebar.png" alt="Alternate Text" />
+                       
+                    </button>
+
+                </div>
+                <div class="column2">
+                    @RenderBody()
+                </div>
+            </div>
+
+    </main><!-- End #main -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <partial name="_Footer" />
+
+    <partial name="_ScriptsPartial" />
+
+    <partial name="_ScriptsNotification" />
+    
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

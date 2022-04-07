@@ -1,0 +1,31 @@
+﻿@model TKMS.Abstraction.ComplexModels.IndentDetailModel
+
+@{
+    ViewData["Title"] = "Indent Detail";
+}
+
+<section class="section">
+
+    <div class="row row1">
+        <div class="col-md-1">
+            <a href="/Indent" class="backBtn"><img src="~/assets/img/next_side.png" /></a>
+        </div>
+        <div class="col-md-6 detail-heading-title">
+            Indent @Model.IndentNo
+        </div>
+        <div class="col-md-5 text-right detail-heading-status">
+            Status: @Model.IndentStatus
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel-group" id="accordion">
+            <partial name="_IndentDetail" model="Model" />
+        </div>
+
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/indent.js"></script>
+}

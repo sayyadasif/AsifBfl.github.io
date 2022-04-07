@@ -1,0 +1,64 @@
+@model TKMS.Abstraction.Models.CardType
+@{
+    ViewData["Title"] = (Model.CardTypeId > 0) ? "Edit Card Type" : "Create New Card Type ";
+}
+
+<section class="section">
+
+    @using (Html.BeginForm("Manage", "CardType", new { ReturnUrl = ViewBag.ReturnUrl },
+FormMethod.Post, true, new { id = "formCardType", enctype = "multipart/form-data", @class = "form-horizontal form-bordered" }))
+    {
+        @Html.HiddenFor(model => model.CardTypeId)
+        <div class="panel panel-flat">
+
+            <div class="row row1">
+                <div class="col-md-1">
+                    <a href="/CardType" class="backBtn backBtnIndent"><img src="~/assets/img/next_side.png" /></a>
+                </div>
+
+                <div class="col-md-6 detail-heading-title">
+                    <div class="panel-heading">
+                        <h5 class="panel-title createNewIndentTitle" id="panel-title">@ViewBag.Title<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+                    </div>
+                </div>
+                <div class="col-md-5 text-right detail-heading-status ">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-12 mt-4">
+                                    <label class="control-label form-label Indent-text">Card Type <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.CardTypeName, new { @class = "form-control", placeholder = "Card Type" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.CardTypeName)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-12 text-right">
+                                    <button type="button" class="btn default cancelIndent" onclick="javascript: window.location.href = '@Url.Action("Index")';">Cancel</button>
+                                    <button type="submit" class="btn btn-primary legitRipple SubmitIndent">Submit<i class="icon-arrow-right14 position-right"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/cardtype.js"></script>
+}

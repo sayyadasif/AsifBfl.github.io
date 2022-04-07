@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Regions";
+}
+
+<section class="section">
+    <div class="row row1">
+        <div class="pagetitle col-lg-12">
+            <h1 class="dashboardTitle">Upload Default Kits</h1>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Upload Default Kits</h5>
+
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <a href="~/Samples/DefaultKitsDetails.xlsx">Sample Excel</a>
+                        </div>
+                        <div class="col-12">
+                            <input type="file" id="defaultKitFileUpload" class="form-control" accept=".xlsx, .xls" />
+                        </div>
+                        <div class="col-12">
+                            <div class="upload-error" id="defaultKitUploadError">
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <button id="btnDefaultKitUpload" type="button" class="btn btn-primary btn-upload">Upload</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+@section Scripts {
+    <script src="~/js/defaultkit.js"></script>
+}  

@@ -1,0 +1,181 @@
+﻿@model TKMS.Abstraction.ComplexModels.DispatchRequestModel
+
+@{
+    ViewData["Title"] = "Dispatch Detail";
+}
+<section class="section">
+
+    <div class="container">
+        @using (Html.BeginForm("Dispatch", "Indent", new { ReturnUrl = ViewBag.ReturnUrl },
+FormMethod.Post, true, new { enctype = "multipart/form-data", @class = "form-horizontal form-bordered" }))
+        {
+            @Html.HiddenFor(model => model.IndentId)
+            @Html.HiddenFor(model => model.IndentStatusId)
+            @Html.HiddenFor(model => model.NoOfKit)
+            @Html.HiddenFor(model => model.IndentNo)
+            @Html.HiddenFor(model => model.IndentStatus)
+            @Html.HiddenFor(model => model.DispatchedNoOfKit)
+
+            <div class="row g-3 row1">
+                <div class="col-md-1">
+                    @if (Model.IndentId > 0)
+                    {
+                        <a href="/Indent/DispatchDetail/@(Model.IndentId)" class="backBtn"><img src="~/assets/img/next_side.png" /></a>
+                    }
+                    else
+                    {
+                        <a href="/Indent#indentForDispatched" class="backBtn"><img src="~/assets/img/next_side.png" /></a>
+                    }
+                </div>
+                <div class="col-md-6  detail-heading-title">
+                    @if (Model.IndentId > 0)
+                    {
+                        <div>
+                            Dispatch Indent @Model.IndentNo
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            Multiple Indent Dispatches
+                        </div>
+                    }
+                </div>
+                <div class="col-md-5 text-right detail-heading-status">
+                    @if (Model.IndentId > 0)
+                    {
+                        <div>
+                            Status: @Model.IndentStatus
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="dispatchIndent">
+                <div class="row g-3 ">
+                    <div class="col-5">
+                        <label class="control-label">No of Kits <span class="required-label">*</span></label>
+                        <div>
+                            @Html.TextBoxFor(model => model.DispatchNoOfKit, (new { @class = "form-control", placeholder = "No of Kits", }))
+                            <span style="color:red">
+                                @Html.ValidationMessageFor(model => model.DispatchNoOfKit)
+                            </span>
+                        </div>
+                    </div>
+                    @if (Model.IndentId > 0)
+                    {
+                        <div class="form-group col-md-3">
+                            <label class="control-label">Total No of Kits</label>
+                            <div class="control-detail">
+                                @Model.NoOfKit
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label class="control-label">Total Disptached No of Kits</label>
+                            <div class="control-detail">
+                                @Model.DispatchedNoOfKit
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <label class="control-label">Excel Samples</label>
+                        <div class="control-detail">
+                            <a href="~/Samples/BranchLevelDispatchDetails.xlsx">Branch Level Dispatch Details</a>
+                            &nbsp; &nbsp;
+                            <a href="~/Samples/KitAccountDetails.xlsx">Kit Account Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    &nbsp;
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <label class="control-label">Dispatch Reports</label>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-5">
+                        <input type="file" class="dispatch-input" asp-for="BranchDispatch" id="BranchDispatch" accept=".xlsx, .xls" hidden />
+                        <label class="file-input-lable" for="BranchDispatch">Upload BFIL Branch Level Dispatch Details</label>
+                        <span asp-validation-for="BranchDispatch" class="text-danger"></span>
+                    </div>
+                    <div class="col-3">
+                        <span class="file-input-name" id="labelBranchDispatch">No file chosen</span>
+                    </div>
+                    <div class="col-4">
+                        @if (!string.IsNullOrEmpty(Model.BranchDispatchSuccess))
+                        {
+                            <div class="file-input-success"> @Html.Raw(@Model.BranchDispatchSuccess)</div>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.BranchDispatchError))
+                        {
+                            <div class="file-input-error">@Html.Raw(@Model.BranchDispatchError)</div>
+                        }
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-5">
+                        <input type="file" class="dispatch-input" asp-for="KitDispatch" id="KitDispatch" accept=".xlsx, .xls" hidden />
+                        <label class="file-input-lable" for="KitDispatch">Upload BFIL Kit Account Level Dispatch Details</label>
+                        <span asp-validation-for="KitDispatch" class="text-danger"></span>
+                    </div>
+                    <div class="col-3">
+                        <span class="file-input-name" id="labelKitDispatch">No file chosen</span>
+                    </div>
+                    <div class="col-4">
+                        @if (!string.IsNullOrEmpty(Model.KitDispatchSuccess))
+                        {
+                            <div class="file-input-success"> @Html.Raw(@Model.KitDispatchSuccess)</div>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.KitDispatchError))
+                        {
+                            <div class="file-input-error">@Html.Raw(@Model.KitDispatchError)</div>
+                        }
+                    </div>
+                </div>
+            </div>
+            
+            @*<div class="row g-3">
+                <div class="col-5">
+                    <input type="file" class="dispatch-input" asp-for="KitDispatchReport" id="KitDispatchReport" accept=".xlsx, .xls" hidden />
+                    <label class="file-input-lable" for="KitDispatchReport">Upload Kit Dispatch Report</label>
+                    <span asp-validation-for="KitDispatchReport" class="text-danger"></span>
+                </div>
+                <div class="col-3">
+                    <span class="file-input-name" id="labelKitDispatchReport">No file chosen</span>
+                </div>
+                <div class="col-4">
+                    @if (!string.IsNullOrEmpty(Model.KitDispatchReportSuccess))
+                    {
+                        <div class="file-input-success"> @Html.Raw(@Model.KitDispatchReportSuccess)</div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.KitDispatchReportError))
+                    {
+                        <div class="file-input-error">@Html.Raw(@Model.KitDispatchReportError)</div>
+                    }
+                </div>
+            </div>*@
+            <div class="row g-3">
+                <div class="form-group col-lg-12 text-right">
+                    <button type="submit" class="btn btn-primary legitRipple" id="btnDispatch" onclick="showLoading();" disabled>Submit<i class="icon-arrow-right14 position-right"></i></button>
+
+                    @if (Model.IndentId > 0)
+                    {
+                        <button type="button" class="btn default" id="btnIndentDispatchBack">Cancel</button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn default" onclick="javascript: window.location.href = '/Indent#indentForDispatched';">Cancel</button>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/indent.js"></script>
+}

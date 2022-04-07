@@ -1,0 +1,45 @@
+﻿@using TKMS.Abstraction.ComplexModels;
+@using Newtonsoft.Json;
+
+@{
+    var notification = TempData["Notification"] != null ?
+            JsonConvert.DeserializeObject<AlertNotificationModel>(TempData["Notification"] as string) : new AlertNotificationModel();
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - TKMS</title>
+
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <partial name="_CssPartial" />
+
+</head>
+<body>
+    <partial name="_BusyIndicatorPartial" />
+
+    <main  class="main">
+        @RenderBody()
+    </main><!-- End #main -->
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <partial name="_Footer" />
+
+    <partial name="_ScriptsPartial" />
+
+    <script type="text/javascript">
+         $(document).ready(function () {
+            if ('@(notification.Message)' != '') {
+                displayToastr('@(notification.Message)', '@(notification.Title)', '@(notification.Type)');
+            }
+         });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

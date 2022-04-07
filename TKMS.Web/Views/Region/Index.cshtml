@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Regions";
+}
+
+<section class="section">
+    <div class="row row1">
+        <div class="pagetitle col-lg-7">
+            <h1 class="dashboardTitle">Regions</h1>
+        </div>
+        <div class="col-lg-5 text-right">
+            <a class="btn btn-outline-primary createNewIndentBtn" asp-area="" asp-controller="Region" asp-action="Manage" onclick="showLoading();">Create New Region</a>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Upload Regions</h5>
+
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <a href="~/Samples/RegionDetails.xlsx">Sample Excel</a>
+                        </div>
+                        <div class="col-12">
+                            <input type="file" id="fileUpload" class="form-control" accept=".xlsx, .xls" />
+                        </div>
+                        <div class="col-12">
+                            <div class="upload-error" id="regionUploadError">
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <button id="btnUpload" type="button" class="btn btn-primary btn-upload">Upload</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="regionDatatable" class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>RO ID</th>
+                                <th>Region Name</th>
+                                <th>Region</th>
+                                <th>Zone Name</th>
+                                <th>District</th>
+                                <th>State</th>
+                                <th>Pincode</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/region.js"></script>
+}  

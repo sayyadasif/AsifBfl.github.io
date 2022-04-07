@@ -1,0 +1,1232 @@
+﻿body {
+    overflow:auto;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar {
+    top: 0px;
+    left: 0px;
+    width: 1440px;
+    height: 100px;
+    background: #98272A 0% 0% no-repeat padding-box !important;
+    opacity: 1;
+}
+
+.bfillogo {
+    top: 12px;
+    left: 34px;
+    width: 170px;
+    height: 77px;
+    background: #98272A;
+}
+
+
+.material-icons {
+    color: #FFFFFF;
+}
+
+.search {
+    top: 37px;
+    margin-left: 970px;
+    width: 25px;
+    height: 27px;
+    opacity: 1;
+}
+
+.notification {
+    top: 35px;
+    width: 25px;
+    height: 25px;
+    opacity: 1;
+}
+
+.roletype {
+    top: 26px;
+    width: 29px;
+    height: 29px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    border-radius: 50%;
+    font: normal normal normal 14px/52px Arial;
+    letter-spacing: 0.14px;
+    color: #212529;
+    margin-left: 13px;
+}
+
+.rolename {
+    color: #FFFFFF;
+    padding: 10px;
+    font: normal normal normal 14px/16px Arial;
+    letter-spacing: 0.14px;
+}
+
+.colIcon {
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.icon-button__badge {
+    position: absolute;
+    top: 36px;
+    right: 212px;
+    width: 13px;
+    height: 13px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #ec5858 0% 0% no-repeat padding-box;
+}
+
+.navbar-side {
+    margin-top: -16px;
+    margin-left: -15px;
+    margin-bottom: -77px;
+    width: 275px;
+    height: 800px;
+    background: #F5F5F5 0% 0% no-repeat padding-box !important;
+    opacity: 1;
+}
+
+.sidebar {
+    margin-top: 50px;
+}
+
+.dashboardicon {
+    margin-top: 65px;
+    margin-left: 50px;
+    width: 20px;
+    height: 20px;
+    background: 0% 0% no-repeat padding-box;
+    opacity: 1;
+    color: #212529 !important;
+}
+
+.colnames1 {
+    margin-top: 50px;
+    margin-left: 27px;
+    width: 61px;
+    height: 22px;
+    text-align: left;
+    font: normal normal normal 18px/52px Roboto;
+    letter-spacing: 0.18px;
+    color: #212529;
+    opacity: 1;
+}
+
+.indenticon {
+    margin-top: 34px;
+    margin-left: 49px;
+    width: 21px;
+    height: 21px;
+    background: transparent url('images/noun_Brochure_3530715.png') 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.indent {
+    padding-top: 31px ;
+    padding-left: 29px ;
+    width: 61px;
+    height: 22px;
+    text-align: left;
+    font: normal normal normal 18px/52px Roboto;
+    letter-spacing: 0.18px;
+    color: #212529 ;
+    opacity: 1;
+}
+
+.reporticon {
+    margin-top: 36px;
+    margin-left: 50px;
+    width: 19px;
+    height: 23px;
+    background: transparent url('images/noun_report_2120955.png') 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.report {
+    margin-top: 36px ;
+    margin-left: 51px ;
+    width: 64px;
+    height: 22px;
+    text-align: left;
+    font: normal normal normal 18px/52px Roboto;
+    letter-spacing: 0.18px;
+    color: #212529;
+    opacity: 1;
+}
+
+.settingicon {
+    margin-top: 432px;
+    margin-left: 51px;
+    width: 23px;
+    height: 23px;
+    background: transparent url('images/noun_Settings_716654.png') 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.setting {
+    margin-top: 456px;
+    margin-left: 51px;
+    width: 67px;
+    height: 22px;
+    text-align: left;
+    font: normal normal normal 18px/52px Roboto;
+    letter-spacing: 0.18px;
+    color: #212529;
+    opacity: 1;
+}
+
+.logouticon {
+    margin-top: 456px;
+    margin-left: 35px;
+    width: 23px;
+    height: 18px;
+    background: transparent url('img/noun_Log Out_4405900.png') 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.logout {
+    margin-top: 456px;
+    margin-left: 68px;
+    width: 64px;
+    height: 22px;
+    text-align: left;
+    font: normal normal medium 18px/52px Roboto;
+    letter-spacing: 0.18px;
+    color: #98272A;
+    opacity: 1;
+}
+
+.colnames2 {
+    padding-top: 25px;
+}
+
+.indenticon {
+    margin-top: 41px;
+    margin-left: 50px;
+}
+
+.indent {
+    padding-top: 31px;
+    padding-left: 27px;
+}
+
+.colnames3 {
+    padding-top: 17px;
+}
+
+.reporticon {
+    margin-top: 32px;
+}
+
+.report {
+    margin-top: 35px;
+    margin-left: 28px;
+}
+
+.colnames4 {
+    padding-top: 419px;
+}
+
+.setting {
+    /* margin-top: 456px; */
+    margin-left: 23px;
+}
+
+.logouticon {
+    margin-top: 20px;
+    margin-left: 48px;
+}
+
+.logout {
+    /* margin-top: 456px; */
+    margin-left: 27px;
+}
+
+.colnames5 {
+    padding-top: 15px;
+}
+
+/*.pb-3 {
+    margin-top: -400px;
+    margin-left: 123px;
+    width: 1165px;
+    height: 800px;
+    background: #F9F9F9 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 8px #00000029;
+    opacity: 1;
+}
+*/
+
+.maindashboard {
+    margin-top: -800px;
+    margin-left: 247px;
+    width: 1165px;
+    height: 800px;
+    background: #F9F9F9 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 8px #00000029;
+    opacity: 1;
+}
+
+.card {
+    margin-top: 17px;
+    margin-left: 35px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 8px #0000001F;
+    border-radius: 15px;
+    opacity: 1;
+    width: 250px;
+}
+
+.col-md-3 {
+    margin-right: -11px !important;
+}
+
+.card-body {
+    height: 158px;
+    width: 250px;
+    color: #212529;
+    font: normal normal medium 16px/19px Roboto;
+    letter-spacing: 0px;
+}
+
+#btn {
+    padding-top: 0px;
+    width: 636px;
+    height: 19px;
+    text-align: right;
+    font: normal normal medium 16px/19px Roboto;
+    letter-spacing: 0px;
+    color: #98272A;
+    opacity: 1;
+}
+
+.btn {
+    color: #98272A;
+    background: none;
+    border: none;
+    top: 329px;
+    left: 339px;
+    width: 81px;
+    height: 17px;
+    text-align: left;
+    font: normal normal medium 14px/17px Roboto;
+    letter-spacing: 0px;
+    opacity: 1;
+}
+
+
+.col-9 {
+    top: 13px;
+    left: 50px;
+    width: 806px;
+    height: 453px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 8px #00000029;
+    border: 2px solid #F0F0F0;
+    border-radius: 12px;
+    opacity: 1;
+    padding-top: 14px;
+    padding-left: 21px;
+    flex: none !important;
+    max-width: none !important;
+}
+
+#indentreject {
+    margin-left: 620px !important;
+    border-color: none;
+    background: none !important;
+}
+
+.card-title {
+    font-size: 16px;
+    color: #212529;
+    width: 214px;
+    height: 19px;
+}
+
+.card-text {
+    top: 274px;
+    left: 339px;
+    width: 51px;
+    height: 34px;
+    text-align: left;
+    font: normal normal bold 28px/40px Ford Antenna;
+    letter-spacing: 0px;
+    color: #DA7300;
+    opacity: 1;
+}
+
+
+#createnewindent {
+    margin-left: 966px;
+    margin-top: 26px;
+    border: none;
+    text-align: center;
+    font: normal normal bold 16px/52px Roboto;
+    letter-spacing: 0.16px;
+    color: #FFFFFF;
+    background: #98272A;
+    border-radius: 3px;
+    opacity: 1;
+    height: 40px;
+    width: 175px;
+    padding-top: 0px;
+
+}
+#rejectedDatatable_length {
+    margin-top: 15px;
+}
+
+    #rejectedDatatable_filter {
+    margin-top: 15px;
+}
+
+#rejectedDatatable {
+    width: 724px;
+    height: 288px;
+    background: #F9F9F9 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.col-md-3 {
+    margin-right: -20px;
+}
+
+.table-bordered td, .table-bordered th {
+    border: none !important; 
+}
+
+#rejectedDatatable_info {
+    margin-top: -6px;
+}
+
+#rejectedDatatable_paginate {
+    margin-top: -6px;
+}
+
+/* Indents Page*/
+.panel {
+    top: 100px;
+    left: 275px;
+    width: 1165px;
+    height: 800px;
+    background: #F9F9F9 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 8px #00000029;
+    opacity: 1;
+    margin-left: 243px;
+    margin-top: -797px;
+}
+
+.panel-body {
+    width: 1084px;
+    height: 709px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    opacity: 1;
+    margin-left: 39px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.panel-title {
+    width: 171px;
+    height: 24px;
+    text-align: left;
+    font: normal normal medium 20px/24px Roboto;
+    letter-spacing: 0px;
+    color: #DA7300;
+    opacity: 1;
+    margin-left: 39px;
+    margin-top: 25px;
+    border-bottom: 2px solid #98272A !important;
+}
+
+#uploadExcel {
+    width: 150px;
+    height: 40px;
+    border: 1px solid #98272A;
+    opacity: 1;
+    /* text-align: center; */
+    /* font: normal normal bold 16px/52px Roboto; */
+    /* letter-spacing: 0.16px; */
+    color: #98272A;
+    /* opacity: 1; */
+    /* width: 94px; */
+    /* height: 19px; */
+    font: Roboto bold;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    padding-left: 26px;
+}
+
+.btn-outline-secondary {
+    margin-top: 10px;
+}
+
+.control-label {
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#IndentDate {
+    width: 275px;
+    height: 48px;
+    background: #F3F3F3 0% 0% no-repeat padding-box;
+    border: 1px solid #F3F3F3;
+    border-radius: 4px;
+    opacity: 1;
+    margin-left: 50px;
+}
+
+#IndentNo {
+    width: 275px;
+    height: 48px;
+    background: #F3F3F3 0% 0% no-repeat padding-box;
+    border: 1px solid #F3F3F3;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+#IndentStatusId {
+    width: 275px;
+    height: 48px !important;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+#SchemeCodeId {
+    width: 170px;
+    height: 48px !important;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+#C5CodeId {
+    width: 170px;
+    height: 48px !important;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    opacity: 1;
+}
+
+#CardTypeId {
+    width: 170px;
+    height: 48px !important;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+#BranchId {
+    width: 170px;
+    height: 48px !important;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+#BfilBranchTypeId {
+    width: 170px;
+    height: 48px !important;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+#BfilRegionId {
+    width: 170px;
+    height: 48px !important;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+#BfilBranchId {
+    width: 170px;
+    height: 48px !important;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+#NoOfKit {
+    width: 274px;
+    height: 48px;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    opacity: 1;
+}
+
+.form-control {
+    width: 275px;
+    height: 48px;
+}
+
+#indDateLabel {
+    margin-top: 40px;
+    margin-left: 58px;
+}
+
+#inddate {
+    width: 90px;
+    height: 19px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+    margin-left: 5px;
+}
+
+#indNoLabel {
+    margin-top: 40px;
+    margin-left: 28px;
+}
+
+#indno {
+    width: 90px;
+    height: 19px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+    margin-left: 25px;
+}
+
+#indStatusLabel {
+    margin-top: 40px;
+}
+
+#indstatus {
+    width: 275px;
+    height: 48px;
+}
+
+#indSchemeLabel {
+    margin-top: 26px;
+    margin-left: 58px;
+}
+
+#indscheme {
+    margin-left: 58px;
+}
+
+#indC5Label {
+    margin-top: 26px;
+    margin-left: -75px;
+}
+
+#indc5 {
+    margin-left: -75px;
+}
+
+#indCardTypeLabel {
+    margin-top: 26px;
+    margin-left: -22px;
+    width: 275px;
+}
+
+#indcardtype {
+    margin-left: -22px;
+}
+
+#noOfKitsLabel {
+    margin-top: 26px;
+    margin-left: -73px;
+}
+
+#noOfKits {
+    margin-left: -73px;
+}
+
+#remarksLabel {
+    margin-top: 10px;
+    margin-left: 55px;
+}
+
+#Remarks {
+    margin-left: 55px;
+    width: 958px !important;
+}
+
+#ContactPersonLabel {
+    margin-top: 32px;
+    margin-left: 55px;
+}
+
+#contactPerson {
+    margin-top: 5px;
+    margin-left: 55px;
+}
+
+#ContactNoLabel {
+    margin-top: 32px;
+    margin-left: 27px;
+}
+
+#ContactNo {
+    margin-top: 5px;
+    margin-left: 12px;
+}
+
+#IfscCodeLabel {
+    margin-top: 32px;
+    margin-left: 5px;
+}
+
+#IfscCode {
+    background: #F3F3F3;
+}
+
+#ifscCode {
+    margin-top: 5px;
+    
+}
+
+#DispatchBranchAddressLabel {
+    margin-top: 33px;
+    margin-left: 55px;
+}
+
+#DispatchBranchAddress {
+    margin-top: 5px;
+    margin-left: 55px;  
+}
+
+#addressDetail {
+    width: 617px;
+}
+
+#pincodeLabel {
+    margin-top: 37px;
+}
+
+#indBranchLabel {
+    margin-top: 18px;
+    margin-left: 55px; 
+}
+
+#indbranch {
+    margin-left: 55px;
+}
+
+#bfilBranchTypeLabel {
+    margin-top: 18px;
+    margin-left: -75px;
+}
+
+#bfilBranchType {
+    margin-left: -75px;
+}
+
+#BfilRegionLabel {
+    margin-top: 18px;
+    margin-left: -19px;
+}
+
+#BfilRegion {
+    margin-left: -19px;
+}
+
+#BfilBranchCodeLabel {
+    margin-top: 18px;
+    margin-left: -70px;
+}
+
+#BfilBranchCode {
+    margin-left: -70px;
+}
+
+.col-lg-12 text-right {
+    margin-top: -42px;
+}
+
+.legitRipple {
+    background: #98272A;
+    color: white;
+    width: 97px;
+    height: 48px;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    opacity: 1;
+    text-align: center;
+}
+
+.default {
+    color: #98272A;
+    width: 97px;
+    height: 48px;
+    border: 1px solid #98272A;
+    border-radius: 4px;
+    opacity: 1;
+    text-align: center;
+    margin-right: 11px;
+    margin-left: 19px;
+}
+
+/*Indent Page*/
+
+#indentPageConatiner {
+    margin-top: -759px;
+    margin-left: 260px;
+    width: 1165px;
+    height: 780px;
+    background: #F9F9F9 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 8px #00000029;
+    opacity: 1;
+}
+
+#indentTab {
+    padding-top: 17px;
+    border-bottom: none;
+}
+
+#createnewindentpage {
+    margin-left: 533px;
+    width: 156px;
+    background: #98272A 0% 0% no-repeat padding-box;
+    border-radius: 3px;
+    opacity: 1;
+    color: #FFFFFF;
+    height: 38px;
+    margin-top: -1392px;
+    margin-right: 2px;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #DA7300 !important;
+    background-color: none !important;
+    border-color: none !important;
+}
+
+.nav-link {
+    font: normal normal medium 20px/24px Roboto;
+    letter-spacing: 0px;
+    color: #9A9A9A !important;
+    opacity: 1;
+    border-color: none !important;
+    border: none !important;
+}
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    background-color: #F9F9F9 !important;
+    border-bottom: 2px solid #98272A !important;
+}
+
+.col-sm-12 {
+    overflow:auto;
+}
+
+#indentRaisedDatatable {
+    width: 1125px !important;
+    height: 60px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 4px #00000029;
+    border-radius: 10px 10px 0px 0px;
+    opacity: 1;
+    
+    white-space: nowrap;
+}
+
+/*code to change background color*/
+.flex-grow-1 .nav-link.active {
+    color: #DA7300 !important;
+    font: normal normal bold 20px/52px Roboto;
+    letter-spacing: 0.2px;
+}
+
+.flex-grow-1 .nav-link {
+    font: normal normal medium 20px/24px Roboto;
+    letter-spacing: 0px;
+    color: #212529 !important;
+    opacity: 1;
+}
+
+.bg-primary {
+    width: 135px;
+    height: 30px;
+    background: #D8A61A 0% 0% no-repeat padding-box !important;
+    border-radius: 3px;
+    opacity: 1;
+    padding-top: 8px;
+}
+
+.pb-3, .py-3 {
+    padding-bottom: 0 !important;
+}
+
+#nav-link1 {
+    margin-top: 50px;
+    margin-left: 68px;
+}
+
+#nav-link-2 {
+    margin-top: 9px;
+    margin-left: 68px;
+}
+#nav-link-3 {
+    margin-top: 20px;
+    margin-left: 68px;
+}
+#nav-link-4 {
+    margin-top: 20px;
+    margin-left: 68px;
+}
+#nav-link-5 {
+    margin-top: 24px;
+    margin-left: 68px;
+}
+#nav-link-6 {
+    margin-top: 348px;
+    margin-left: 68px;
+}
+
+
+.panel-group {
+    width: 95% !important;
+}
+
+#panel {
+    padding-top: 36px;
+}
+
+/*Indent Details Page*/
+
+.inddate {
+    padding-top: 36px;
+    padding-left: 53px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentdate {
+    padding-left: 58px;
+    padding-top: 15px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentnumber {
+    padding-top: 36px;
+    padding-left: 40px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentnumber {
+    padding-top: 15px;
+    padding-left: 66px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indbranch {
+    padding-top: 36px;
+    padding-left: 2px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentbranch {
+    margin-left: 56px;
+    padding-top: 15px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentscheme {
+    margin-left: 58px;
+    margin-top: 30px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentscheme {
+    padding-left: 58px;
+    padding-top: 15px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentc5code {
+    margin-top: 30px;
+    padding-left: 66px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentc5code {
+    padding-top: 15px;
+    padding-left: 66px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentcardtype {
+    margin-left: 56px;
+    margin-top: 35px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentcardtype {
+    padding-left: 56px;
+    padding-top: 15px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentnoofkits {
+    margin-top: 27px;
+    padding-left: 57px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentnoofkits {
+    padding-top: 15px;
+    padding-left: 57px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentbfilbranchtype {
+    margin-top: 27px;
+    padding-left: 64px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentbfilbranchtype {
+    padding-top: 15px;
+    padding-left: 64px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentbfilbranchcode {
+    margin-top: 27px;
+    margin-left: 57px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentbfilbranchcode {
+    padding-top: 15px;
+    margin-left: 57px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentdispatchbranchaddress {
+    margin-top: 30px;
+    margin-left: 55px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentdispatchbranchaddress {
+    margin-left: 55px;
+    padding-top: 15px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentpincode {
+    margin-top: 30px;
+    margin-left: 55px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentpincode {
+    margin-left: 55px;
+    padding-top: 15px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentcontactperson {
+    margin-top: 64px;
+    margin-left: 55px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentcontactperson {
+    margin-left: 55px;
+    padding-top: 15px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentcontactnumber {
+    margin-top: 64px;
+    margin-left: 62px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentcontactnumber {
+    margin-left: 62px;
+    padding-top: 15px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentifsccode {
+    margin-top: 64px;
+    margin-left: 53px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentifsccode {
+    margin-left: 53px;
+    padding-top: 15px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+.indentremarks {
+    margin-top: 37px;
+    margin-left: 55px;
+    text-align: left;
+    font: normal normal normal 16px/12px Roboto !important;
+    letter-spacing: 0px;
+    color: #262626;
+    opacity: 1;
+}
+
+#indentremarks {
+    margin-left: 55px;
+    padding-top: 15px;
+    font: normal normal medium 16px/17px Roboto !important;
+    letter-spacing: 0px;
+    color: #212529;
+    opacity: 0.99;
+}
+
+#backbtn {
+    margin-top: -1402px;
+    margin-left: 251px;
+}
+
+#col-md-6 {
+    padding-top: 24px;
+    margin-top: -737px;
+    margin-left: 319px;
+    width: 161px;
+    height: 24px;
+    text-align: left;
+    font: normal normal medium 20px/24px Roboto;
+    letter-spacing: 0px;
+    color: #DA7300;
+    opacity: 1;
+}
+
+#panel-body {
+    margin-top: 51px;
+    margin-left: 13px;
+}
+
+#indentDetail {
+    border-bottom: none !important;
+    width: 112px;
+    height: 22px;
+    text-align: left;
+    font: normal normal bold 18px/12px Roboto;
+    letter-spacing: 0px;
+    color: #262626 !important;
+    opacity: 1;
+    padding-left: 14px;
+}
+
+.line {
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 3px #00000029;
+    border-radius: 10px 10px 0px 0px;
+    opacity: 1;
+}

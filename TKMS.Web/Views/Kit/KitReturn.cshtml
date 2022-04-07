@@ -1,0 +1,77 @@
+﻿@model TKMS.Abstraction.ComplexModels.KitAllocateModel
+@using Core.Utility.Utils
+
+@{
+    ViewData["Title"] = "Returning Kits";
+}
+<section class="section">
+
+    <div class="row row1">
+        <div class="col-md-1">
+            <a href="/Kit#kitAllocated" class="backBtn"><img src="~/assets/img/next_side.png" /></a>
+        </div>
+        <div class="col-md-6 detail-heading-title">
+            Returning Kits (@Model.Kits.Count)
+        </div>
+        <div class="col-md-5 text-right detail-heading-status">
+        </div>
+    </div>
+
+    <div class="container">
+        @using (Html.BeginForm("KitReturn", "Kit", new { ReturnUrl = ViewBag.ReturnUrl },
+FormMethod.Post, true, new { id = "formKitReturn", enctype = "multipart/form-data", @class = "form-horizontal form-bordered" }))
+        {
+            @Html.HiddenFor(model => model.KitIds)
+
+            <div class="panel-body">
+                <table class="table datatable" id="staffAllocatedDatatable">
+                    <thead>
+                        <tr>
+                            <th>Account Number</th>
+                            <th>Cif No</th>
+                            <th>Allocated Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var kit in Model.KitDetails)
+                        {
+                            <tr>
+                                <td>
+                                    @kit.AccountNo
+                                </td>
+                                <td>
+                                    @kit.CifNo
+                                </td>
+                                <td>
+                                    @if (kit.AllocatedDate.HasValue)
+                                    {
+                                        @CommonUtils.GetFormatedDate(kit.AllocatedDate.Value)
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="row g-3">
+                    <div class="col-lg-12 text-right">
+                        <input type="hidden" value="false" id="isAllocate" />
+                        <button type="button" class="btn default"
+                                onclick="javascript: window.location.href = '/Kit#kitAllocated';">
+                            Cancel
+                        </button>
+                        <button type="button" class="btn btn-primary legitRipple" id="btnKitReturn">Submit<i class="icon-arrow-right14 position-right"></i></button>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <partial name="_ValidateAuth" model="Model" />
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/kit.js"></script>
+}

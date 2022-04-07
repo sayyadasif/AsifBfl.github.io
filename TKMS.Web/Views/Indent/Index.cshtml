@@ -1,0 +1,384 @@
+﻿@model TKMS.Abstraction.ComplexModels.IndentDisplayModel
+
+@{
+    ViewData["Title"] = "Indents";
+}
+
+<section class="section">
+    <div class="row row1">
+
+        <div class="col-lg-12">
+            <!-- Tabs navs -->
+            <ul class="nav nav-pills mb-3" id="indentTab" role="tablist">
+
+                @if (Model.IndentRaised)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="indentRaisedTab"
+                           data-toggle="tab"
+                           href="#indentRaised"
+                           role="tab"
+                           aria-controls="indentRaised"
+                           aria-selected="true"
+                           statusId="1,2,4">Indents Raised</a>
+                    </li>
+                }
+
+                @if (Model.IndentReceived)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="indentReceivedTab"
+                           data-toggle="tab"
+                           href="#indentReceived"
+                           role="tab"
+                           aria-controls="indentReceived"
+                           aria-selected="false"
+                           statusId="1"
+                           showStock="true">Indents Received</a>
+                    </li>
+                }
+
+                @if (Model.IndentCpuReceived)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="indentReceivedCpuTab"
+                           data-toggle="tab"
+                           href="#indentReceivedCpu"
+                           role="tab"
+                           aria-controls="indentReceivedCpu"
+                           aria-selected="false"
+                           statusId="2"
+                           showStock="false">Indents Received</a>
+                    </li>
+                }
+
+                @if (Model.IndentApproved)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="indentApprovedTab"
+                           data-toggle="tab"
+                           href="#indentApproved"
+                           role="tab"
+                           aria-controls="indentApproved"
+                           aria-selected="false"
+                           statusId="2">Indents Approved</a>
+                    </li>
+                }
+
+                @if (Model.IndentRejected)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="indentRejectedTab"
+                           data-toggle="tab"
+                           href="#indentRejected"
+                           role="tab"
+                           aria-controls="indentRejected"
+                           aria-selected="false"
+                           statusId="3"
+                           viewPage="Manage">Indents Rejected</a>
+                    </li>
+                }
+
+                @if (Model.IndentRejectedDetail)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="indentRejectedTab"
+                           data-toggle="tab"
+                           href="#indentRejected"
+                           role="tab"
+                           aria-controls="indentRejected"
+                           aria-selected="false"
+                           statusId="3"
+                           viewPage="RejectedDetail">Indents Rejected</a>
+                    </li>
+                }
+
+                @if (Model.IndentCpuDispatched)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="indentForDispatchedTab"
+                           data-toggle="tab"
+                           href="#indentForDispatched"
+                           role="tab"
+                           aria-controls="indentForDispatched"
+                           aria-selected="false"
+                           statusId="4,5"
+                           viewPage="DispatchDetail"
+                           dispatchQty="true">Indents For Dispatch</a>
+                    </li>
+                }
+
+                @if (Model.IndentDispatched)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="indentDispatchedTab"
+                           data-toggle="tab"
+                           href="#indentDispatched"
+                           role="tab"
+                           aria-controls="indentDispatched"
+                           aria-selected="false"
+                           statusId="5,6,8"
+                           dispatchQty="true">Indents Dispatched</a>
+                    </li>
+                }
+
+                @if (Model.IndentReceivedAtBranch)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="indentDispatchedTab"
+                           data-toggle="tab"
+                           href="#indentDispatched"
+                           role="tab"
+                           aria-controls="indentDispatched"
+                           aria-selected="false"
+                           statusId="5,6,7"
+                           dispatchQty="true">Indents Dispatched</a>
+                    </li>
+                }
+
+                @if (Model.IndentCancelled)
+                {
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link"
+                           id="indentCancelledTab"
+                           data-toggle="tab"
+                           href="#indentCancelled"
+                           role="tab"
+                           aria-controls="indentCancelled"
+                           aria-selected="false"
+                           statusId="8"
+                           viewPage="CancelledDetail"
+                           dispatchQty="true">Indents Cancelled</a>
+                    </li>
+                }
+
+            </ul>
+            <!-- Tabs navs -->
+
+            @if (Model.AllowIndentCreate)
+            {
+                <div class="text-right pb-3 createIndentButton" style="margin-top: -50px;">
+                    <a class="btn btn-outline-primary createIndent" id="createBtn" asp-area="" asp-controller="Indent" asp-action="Manage" onclick="showLoading();">Create New Indent</a>
+                </div>
+            }
+
+
+            <div class="filterRow">
+                <partial name="_IndentFilters" />
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body IndentTable">
+                            <!-- Tabs content -->
+                            <div class="tab-content" id="indentTabContent">
+
+                                <div class="tab-pane fade show"
+                                     id="indentRaised"
+                                     role="tabpanel"
+                                     aria-labelledby="indentRaised">
+                                    <table id="indentRaisedDatatable" class="table datatable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Status</th>
+                                                <th>Indent<br />Number</th>
+                                                <th>Date</th>
+                                                <th>Indenting<br />Branch</th>
+                                                <th>Scheme<br />Code</th>
+                                                <th>C5<br />Code</th>
+                                                <th>Card<br />Type</th>
+                                                <th>No. of Kit<br />Required</th>
+                                                <th>BFIL<br />Address Type</th>
+                                                <th>BFIL<br />Branch Code</th>
+                                                <th>IFSC<br />Code</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade show"
+                                     id="indentRejected"
+                                     role="tabpanel"
+                                     aria-labelledby="indentRejected">
+                                    <table id="indentRejectedDatatable" class="table datatable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Indent<br />Number</th>
+                                                <th>Date</th>
+                                                <th>Indenting<br />Branch</th>
+                                                <th>Scheme<br />Code</th>
+                                                <th>C5<br />Code</th>
+                                                <th>Card<br />Type</th>
+                                                <th>No. of Kit<br />Required</th>
+                                                <th>BFIL<br />Address Type</th>
+                                                <th>BFIL<br />Branch Code</th>
+                                                <th>IFSC<br />Code</th>
+                                                <th>Rejected Reason</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade show"
+                                     id="indentDispatched"
+                                     role="tabpanel"
+                                     aria-labelledby="indentDispatched">
+                                    <table id="indentDispatchedDatatable" class="table datatable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Status</th>
+                                                <th>Indent<br />Number</th>
+                                                <th>Date</th>
+                                                <th>Indenting<br />Branch</th>
+                                                <th>Scheme<br />Code</th>
+                                                <th>C5<br />Code</th>
+                                                <th>Card<br />Type</th>
+                                                <th>No. of Kit<br />Required</th>
+                                                <th>No. of Kit<br />Dispatched</th>
+                                                <th>No. of Kit<br />Cancelled</th>
+                                                <th>BFIL<br />Address Type</th>
+                                                <th>BFIL<br />Branch Code</th>
+                                                <th>IFSC<br />Code</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade show"
+                                     id="indentReceived"
+                                     role="tabpanel"
+                                     aria-labelledby="indentReceived">
+                                    <table id="indentReceivedDatatable" class="table datatable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Indent<br />Number</th>
+                                                <th>Date</th>
+                                                <th>Indenting<br />Branch</th>
+                                                <th>No. of Kit<br />Required</th>
+                                                <th>Stock<br />Present</th>
+                                                <th>Scheme<br />Code</th>
+                                                <th>C5<br />Code</th>
+                                                <th>BFIL<br />Branch Code</th>
+                                                <th class="no-sort"></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade show"
+                                     id="indentReceivedCpu"
+                                     role="tabpanel"
+                                     aria-labelledby="indentReceivedCpu">
+                                    <table id="indentReceivedCpuDatatable" class="table datatable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Indent<br />Number</th>
+                                                <th>Date</th>
+                                                <th>Indenting<br />Branch</th>
+                                                <th>No. of Kit<br />Required</th>
+                                                <th>Scheme<br />Code</th>
+                                                <th>C5<br />Code</th>
+                                                <th>BFIL<br />Branch Code</th>
+                                                <th class="no-sort"></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade show"
+                                     id="indentApproved"
+                                     role="tabpanel"
+                                     aria-labelledby="indentApproved">
+                                    <table id="indentApprovedDatatable" class="table datatable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Indent<br />Number</th>
+                                                <th>Date</th>
+                                                <th>Indenting<br />Branch</th>
+                                                <th>Scheme<br />Code</th>
+                                                <th>C5<br />Code</th>
+                                                <th>Card<br />Type</th>
+                                                <th>No. of Kit<br />Required</th>
+                                                <th>BFIL<br />Address Type</th>
+                                                <th>BFIL<br />Branch Code</th>
+                                                <th>IFSC<br />Code</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade show"
+                                     id="indentForDispatched"
+                                     role="tabpanel"
+                                     aria-labelledby="indentForDispatched">
+                                    <div class="text-right">
+                                        <button type="button" class="btn btn-success" onclick="javascript: window.location.href = '/Indent/Dispatch';">
+                                            Indent Dispatches
+                                        </button>
+                                    </div>
+                                    <table id="indentForDispatchedDatatable" class="table datatable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Indent<br />Number</th>
+                                                <th>Date</th>
+                                                <th>Indenting<br />Branch</th>
+                                                <th>Scheme<br />Code</th>
+                                                <th>C5<br />Code</th>
+                                                <th>Card<br />Type</th>
+                                                <th>No. of Kit<br />Required</th>
+                                                <th>No. of Kit<br />Dispatched</th>
+                                                <th>BFIL<br />Address Type</th>
+                                                <th>BFIL<br />Branch Code</th>
+                                                <th>IFSC<br />Code</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade show"
+                                     id="indentCancelled"
+                                     role="tabpanel"
+                                     aria-labelledby="indentCancelled">
+                                    <table id="indentCancelledDatatable" class="table datatable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Indent<br />Number</th>
+                                                <th>Date</th>
+                                                <th>Indenting<br />Branch</th>
+                                                <th>Scheme<br />Code</th>
+                                                <th>C5<br />Code</th>
+                                                <th>Card<br />Type</th>
+                                                <th>No. of Kit<br />Required</th>
+                                                <th>No. of Kit<br />Dispatched</th>
+                                                <th>BFIL<br />Address Type</th>
+                                                <th>BFIL<br />Branch Code</th>
+                                                <th>IFSC<br />Code</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/indent.js"></script>
+}

@@ -1,0 +1,124 @@
+﻿@model TKMS.Abstraction.ComplexModels.KitModel
+@using Core.Utility.Utils
+
+<div class="accordion" id="accordionKitDetail">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingKitDetail">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#kitDetail" aria-expanded="true" aria-controls="kitDetail">
+                Kit Detail
+            </button>
+        </h2>
+        <div id="kitDetail" class="accordion-collapse collapse show" aria-labelledby="headingKitDetail" data-bs-parent="#accordionKitDetail">
+            <div class="accordion-body">
+                <div class="row g-3">
+                    <div class="col-4">
+                        <label class="control-label">Indent Number</label>
+                        <div class="control-detail">
+                            @Model.IndentNo
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Account No</label>
+                        <div class="control-detail">
+                            @Model.AccountNo
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Cif No</label>
+                        <div class="control-detail">
+                            @Model.CifNo
+                        </div>
+                    </div>
+                    @if (Model.AllocatedDate.HasValue)
+                    {
+                        <div class="col-4">
+                            <label class="control-label">Allocated Date </label>
+                            <div class="control-detail">
+                                @CommonUtils.GetFormatedDate(Model.AllocatedDate.Value)
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label class="control-label">Staff Id </label>
+                            <div class="control-detail">
+                                @Model.StaffId
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label class="control-label">Staff Name </label>
+                            <div class="control-detail">
+                                @Model.StaffName
+                            </div>
+                        </div>
+                    }
+                    <div class="col-4">
+                        <label class="control-label">Branch Code </label>
+                        <div class="control-detail">
+                            @Model.IblBranchCode
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Branch Name</label>
+                        <div class="control-detail">
+                            @Model.IblBranchName
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Bfil Branch Code </label>
+                        <div class="control-detail">
+                            @Model.BfilBranchCode
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Card Type</label>
+                        <div class="control-detail">
+                            @Model.CardType
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        @if (Model.AllocatedDate.HasValue)
+                        {
+                            <label class="control-label">Age </label>
+                            <div class="control-detail">
+                                @Model.AgeDetail
+                            </div>
+                        }
+                    </div>
+                    <div class="col-4">
+                        @if (!string.IsNullOrEmpty(Model.CustomerName))
+                        {
+                            <label class="control-label">Customer Name </label>
+                            <div class="control-detail">
+                                @Model.CustomerName
+                            </div>
+                        }
+                    </div>
+
+                    @if (Model.KitDamageReasonId.HasValue)
+                    {
+                        <div class="col-4">
+                            <label class="control-label">Destruction Reason </label>
+                            <div class="control-detail">
+                                @Model.KitDamageReason
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <label class="control-label">Destruction Remarks </label>
+                            <div class="control-detail">
+                                @Model.DamageRemarks
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            @if (Model.IsDestructionApproved.HasValue && Model.IsDestructionApproved.Value)
+                            {
+                                <label class="control-label">Destruction Approve Remarks </label>
+                                <div class="control-detail">
+                                    @Model.DestructionRemarks
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

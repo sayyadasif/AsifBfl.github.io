@@ -1,0 +1,31 @@
+@inject TKMS.Service.Interfaces.IUserProviderService userProviderService
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="row row5">
+    <div class="pagetitle col-lg-7">
+        <h1 class="dashboardTitle">@userProviderService.UserClaim.Name</h1>
+    </div>
+    <div class="col-lg-3 text-right">
+        @if (userProviderService.AllowIndentCreate())
+        {
+            <a class="btn btn-outline-primary createNewIndentBtn" asp-area="" asp-controller="Indent" asp-action="Manage" onclick="showLoading();">Create New Indent</a>
+        }
+    </div>
+    <div class="col-lg-2">
+        <select class="form-select" onchange="updateMonthFilter(this);" id="month-filter">
+            <option value="1" selected>Current Month</option>
+            <option value="2">Last Month</option>
+            <option value="3">Last 3 Months</option>
+        </select>
+    </div>
+</div>
+
+<div id="dashboard-details">
+</div>
+
+@section Scripts {
+    <script src="~/js/dashboard.js"></script>
+}

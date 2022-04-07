@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Card Types";
+}
+
+<section class="section">
+    <div class="row row1">
+        <div class="pagetitle col-lg-7">
+            <h1 class="dashboardTitle">Card Types</h1>
+        </div>
+        <div class="col-lg-5 text-right">
+            <a class="btn btn-outline-primary createNewC5Btn" asp-area="" asp-controller="CardType" asp-action="Manage" onclick="showLoading();">Create New Card Type</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="cardTypeDatatable" class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Card Type </th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/cardtype.js"></script>
+}  

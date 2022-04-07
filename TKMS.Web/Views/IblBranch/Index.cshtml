@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "IBL Branches";
+}
+
+<section class="section">
+    <div class="row row1">
+        <div class="pagetitle col-lg-7">
+            <h1 class="dashboardTitle">IBL Branches</h1>
+        </div>
+        <div class="col-lg-5 text-right">
+            <a class="btn btn-outline-primary createNewC5Btn" asp-area="" asp-controller="IblBranch" asp-action="Manage" onclick="showLoading();">Create New IBL Branch</a>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Upload IBL Branches</h5>
+
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <a href="~/Samples/IBLBranchDetails.xlsx">Sample Excel</a>
+                        </div>
+                        <div class="col-12">
+                            <input type="file" id="fileUpload" class="form-control" accept=".xlsx, .xls" />
+                        </div>
+                        <div class="col-12">
+                            <div class="upload-error" id="iblBranchUploadError">
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <button id="btnUpload" type="button" class="btn btn-primary btn-upload">Upload</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Upload IBL Branch Mapping</h5>
+
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <a href="~/Samples/BfilIblBranchMappingDetails.xlsx">Sample Excel</a>
+                        </div>
+                        <div class="col-12">
+                            <input type="file" id="fileUploadMapping" class="form-control" accept=".xlsx, .xls" />
+                        </div>
+                        <div class="col-12">
+                            <div class="upload-error" id="iblBranchUploadMappingError">
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <button id="btnUploadMapping" type="button" class="btn btn-primary btn-upload">Upload</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="iblBranchDatatable" class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>IBL Branch Name</th>
+                                <th>IBL Branch Code</th>
+                                <th>Branches</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/iblbranch.js"></script>
+}  

@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Branches";
+}
+
+<section class="section">
+    <div class="row row1">
+        <div class="pagetitle col-lg-7">
+            <h1 class="dashboardTitle">Branches</h1>
+        </div>
+        <div class="col-lg-5 text-right">
+            <a class="btn btn-outline-primary createNewIndentBtn" asp-area="" asp-controller="Branch" asp-action="Manage" onclick="showLoading();">Create New Branch</a>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Upload Branches</h5>
+
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <a href="~/Samples/BranchDetails.xlsx">Sample Excel</a>
+                        </div>
+                        <div class="col-12">
+                            <input type="file" id="fileUpload" class="form-control" accept=".xlsx, .xls" />
+                        </div>
+                        <div class="col-12">
+                            <div class="upload-error" id="branchUploadError">
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <button id="btnBranchUpload" type="button" class="btn btn-primary btn-upload">Upload</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="branchDatatable" class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Branch Name</th>
+                                <th>Branch Code</th>
+                                <th>Branch Type</th>
+                                <th>Region Name</th>
+                                <th>IBL Branch Code</th>
+                                <th>IBL Branch Name</th>
+                                <th>IFSC Code</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/branch.js"></script>
+}

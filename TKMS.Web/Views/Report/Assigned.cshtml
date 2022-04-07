@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Assigned Report";
+}
+
+
+<partial name="_FilterReport" />
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <input type="hidden" value="assignedReportDatatable" id="reportName" />
+
+                    <table id="assignedReportDatatable" class="table datatable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Indent<br />Number</th>
+                                <th>Date of <br />Indent <br />(Approved by<br />BFIL)</th>
+                                <th>Date of <br />Indent <br />(Approved by<br />IBL)</th>
+                                <th>Date of <br />Dispatch</th>
+                                <th>Date of <br />Dispatch report<br /> upload (By IBL)</th>
+                                <th>Report <br />Uploaded by <br />(IBL User)</th>
+                                <th>Date of <br />Upload</th>
+                                <th>IBL <br />Branch Code</th>
+                                <th>IBL <br />Branch Name</th>
+                                <th>BFIL<br />Branch code</th>
+                                <th>CIF No</th>
+                                <th>A/c Stat</th>
+                                <th>Status</th>
+                                <th>Received <br />by User</th>
+                                <th>Received <br />date and time <br />by branch</th>
+                                <th>Status</th>
+                                <th>Scanned <br />By (User)</th>
+                                <th>Scanned <br />Date Time</th>
+                                <th>Allocated To<br />(BFIL Staff ID)</th>
+                                <th>Allocated To<br />(BFIL Staff Name)</th>
+                                <th>Allocated By<br />(User)</th>
+                                <th>Allocated On<br />Date Time</th>
+                                <th>Assigned <br />Date Time</th>
+                                <th>Assigned To<br />(BFIL reference<br /> ID of customer)</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="~/js/report.js"></script>
+}

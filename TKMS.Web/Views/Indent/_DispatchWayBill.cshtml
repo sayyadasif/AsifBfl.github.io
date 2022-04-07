@@ -1,0 +1,39 @@
+﻿@model List<TKMS.Abstraction.ComplexModels.DispatchWayBillModel>
+
+@using Core.Utility.Utils
+@{
+    var index = 0;
+}
+
+@foreach (var wayBill in Model)
+{
+    index++;
+    <hr />
+    <div class="row g-3">
+        <div class="col-3 waybill1">
+            <label class="control-label">Way Bill No. @index</label>
+            <div class="waybillLabel control-detail">
+                @wayBill.WayBillNo
+            </div>
+        </div>
+        <div class="col-3 waybill2">
+            <label class="control-label">Delivery Date</label>
+            <div class="waybillLabel control-detail" id="@($"deliveryDate{wayBill.DispatchWayBillId}")">
+                @(wayBill.DeliveryDate.HasValue ?
+                CommonUtils.GetFormatedDate(wayBill.DeliveryDate.Value) : "")
+            </div>
+        </div>
+        <div class="col-3 waybill3">
+            <label class="control-label">Courier Name</label>
+            <div class="waybillLabel control-detail" id="@($"courier{wayBill.DispatchWayBillId}")">
+                @wayBill.CourierPartner
+            </div>
+        </div>
+        <div class="col-3 waybill4">
+            <label class="control-label">Receiver Name</label>
+            <div class="waybillLabel control-detail" id="@($"receiver{wayBill.DispatchWayBillId}")">
+                @wayBill.ReceiveBy
+            </div>
+        </div>
+    </div>
+}

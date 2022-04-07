@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Reports";
+}
+
+<section class="section">
+    <div class="row row1">
+        <div class="col-lg-12">
+            <h5 class="card-title ReportsList">List of Reports</h5>
+            <div class="card ReportsCard">
+                <div class="card-body">
+                    @*<h5 class="card-title">List of Reports</h5>*@
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> 
+                            <a class="report-button reportName" asp-area="" asp-controller="Report" asp-action="Indent">
+                                Indent Report 
+                                <img class="ReportsArrow" src="~/assets/img/next_side.png"  />
+                            </a>
+                        </li>
+                        <li class="list-group-item"> 
+                            <a class="report-button reportName" asp-area="" asp-controller="Report" asp-action="Dispatch">
+                                Dispatch Report 
+                                <img class="ReportsArrow" src="~/assets/img/next_side.png"  />
+                            </a>
+                        </li>
+                        <li class="list-group-item"> 
+                            <a class="report-button reportName" asp-area="" asp-controller="Report" asp-action="Delivery">
+                                Delivery Report 
+                                <img class="ReportsArrow" src="~/assets/img/next_side.png"  />
+                            </a> 
+                        </li>
+                        <li class="list-group-item"> <a class="report-button reportName" asp-area="" asp-controller="Report" asp-action="AccountLevelDispatch">Account level Dispatch report <img class="ReportsArrow" src="~/assets/img/next_side.png"  /></a>                 </li>
+                        <li class="list-group-item"> <a class="report-button reportName" asp-area="" asp-controller="Report" asp-action="ReceivedAtRO">Received at RO Report  <img class="ReportsArrow" src="~/assets/img/next_side.png"  /> </a>                             </li>
+                        <li class="list-group-item"> <a class="report-button reportName" asp-area="" asp-controller="Report" asp-action="ReceivedAtBranch">Received at Branch Report <img class="ReportsArrow" src="~/assets/img/next_side.png"  /></a>                         </li>
+                        <li class="list-group-item"> <a class="report-button reportName" asp-area="" asp-controller="Report" asp-action="Scanned">Scanned Report <img class="ReportsArrow" src="~/assets/img/next_side.png"  /></a>                                             </li>
+                        <li class="list-group-item"> <a class="report-button reportName" asp-area="" asp-controller="Report" asp-action="Allocation">Allocation Report <img class="ReportsArrow" src="~/assets/img/next_side.png"  /></a>                                       </li>
+                        <li class="list-group-item"> <a class="report-button reportName" asp-area="" asp-controller="Report" asp-action="Assigned">Assigned Report <img class="ReportsArrow" src="~/assets/img/next_side.png"  /></a>                                           </li>
+                        <li class="list-group-item"> <a class="report-button reportName" asp-area="" asp-controller="Report" asp-action="Destruction">Destruction Report <img class="ReportsArrow" src="~/assets/img/next_side.png"  /></a>                                     </li>
+                        <li class="list-group-item"> <a class="report-button reportName" asp-area="" asp-controller="Report" asp-action="TotalStock">Total Stock Report <img class="ReportsArrow" src="~/assets/img/next_side.png"  /></a>                                      </li>
+                        <li class="list-group-item"> <a class="report-button reportName" asp-area="" asp-controller="Report" asp-action="Return">Return Report <img class="ReportsArrow" src="~/assets/img/next_side.png"  /></a>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="~/js/report.js"></script>
+}

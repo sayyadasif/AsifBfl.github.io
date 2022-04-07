@@ -1,0 +1,159 @@
+@model TKMS.Abstraction.Models.User
+@{
+    ViewData["Title"] = (Model.UserId > 0) ? "Edit User" : "Create New User ";
+}
+
+<section class="section">
+
+    @using (Html.BeginForm("Manage", "User", new { ReturnUrl = ViewBag.ReturnUrl },
+FormMethod.Post, true, new { id = "formUser", enctype = "multipart/form-data", @class = "form-horizontal form-bordered" }))
+    {
+        @Html.HiddenFor(model => model.UserId)
+        @Html.HiddenFor(model => model.Salt)
+        @Html.HiddenFor(model => model.OldPassword)
+        <div class="panel panel-flat">
+
+            <div class="row row1">
+                <div class="col-md-1">
+                    <a href="/User" class="backBtn backBtnIndent"><img src="~/assets/img/next_side.png" /></a>
+                </div>
+
+                <div class="col-md-6 detail-heading-title">
+                    <div class="panel-heading">
+                        <h5 class="panel-title createNewIndentTitle" id="panel-title">@ViewBag.Title<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+                    </div>
+                </div>
+                <div class="col-md-5 text-right detail-heading-status ">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-8 ">
+                                    <label class="control-label form-label Indent-text">Full Name <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.FullName, new { @class = "form-control", placeholder = "Full Name" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.FullName)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4  ">
+                                    <label class="control-label form-label Indent-text">Staff Id <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.StaffId, new { @class = "form-control", placeholder = "Staff Id" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.StaffId)
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-4 ">
+                                    <label class="control-label form-label Indent-text">Branch <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.DropDownListFor(model => model.BranchId, (List<SelectListItem>)ViewBag.Branches, (new { @class = "form-control dropdownlist" }))
+
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.BranchId)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4  ">
+                                    <label class="control-label form-label Indent-text">Role Type <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.DropDownListFor(model => model.RoleTypeId, (List<SelectListItem>)ViewBag.RoleTypes, (new { @class = "form-control dropdownlist", onchange = "GetRoles(this);", }))
+
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.RoleTypeId)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4  ">
+                                    <label class="control-label form-label Indent-text">Roles <span class="required-label">*</span></label>
+                                    <div id="userRoles">
+                                        @foreach (var userRole in Model.UserRoles)
+                                        {
+                                            <label>
+                                                @if (Model.SelectedRoles.Contains(userRole.RoleId))
+                                                {
+                                                    <input name="SelectedRoles" type="checkbox" value="@userRole.RoleId" checked />
+                                                }
+                                                else
+                                                {
+                                                    <input name="SelectedRoles" type="checkbox" value="@userRole.RoleId" />
+                                                }
+                                                &nbsp;@userRole.Role.RoleName
+                                            </label><span>&nbsp;&nbsp;</span>
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-6 ">
+                                    <label class="control-label form-label Indent-text">Email </label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Email" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.Email)
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <label class="control-label form-label Indent-text">Mobile No <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.MobileNo, new { @class = "form-control", placeholder = "Mobile No" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.MobileNo)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row g-3 password-detail display-none">
+
+                                <div class="col-md-2 password-edit display-none">
+                                    <label class="control-label form-label Indent-text">Update Password</label>
+                                    <div>
+                                        <label>@Html.RadioButtonFor(model => model.IsUpdatePassword, false, new { @checked = true, onclick = "showPassword(false);", }) No </label> &nbsp;&nbsp;&nbsp;
+                                        <label>@Html.RadioButtonFor(model => model.IsUpdatePassword, true, new { @checked = true, onclick = "showPassword(true);" }) Yes</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 password-user display-none">
+                                    <label class="control-label form-label Indent-text">User Password <span class="required-label">*</span></label>
+                                    <div>
+                                        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", placeholder = "User Password" })
+                                        <span style="color:red">
+                                            @Html.ValidationMessageFor(model => model.Password)
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-12 text-right">
+                                    <button type="button" class="btn default cancelIndent" onclick="javascript: window.location.href = '@Url.Action("Index")';">Cancel</button>
+                                    <button type="submit" class="btn btn-primary legitRipple SubmitIndent" onclick="return validateUser();">Submit<i class="icon-arrow-right14 position-right"></i></button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/user.js"></script>
+}

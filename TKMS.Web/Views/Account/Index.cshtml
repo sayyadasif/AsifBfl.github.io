@@ -1,0 +1,91 @@
+﻿@model TKMS.Abstraction.ComplexModels.LoginModel
+
+@{
+    Layout = "_LayoutLogin";
+    ViewData["Title"] = "Tatkal Kit Management System";
+}
+
+<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+                <div class="d-flex justify-content-center py-4">
+                    <a class="logo d-flex align-items-center w-auto">
+                        <img src="~/images/BFIL-Logo.jpg" class="logo_tkms" />
+                        @*<span class="d-none d-lg-block">BFIL</span>*@
+                    </a>
+                </div>
+
+                <div class="card mb-3">
+
+                    <div class="card-body">
+
+                        <div class="pt-4 pb-2">
+                            <h5 class="card-title text-center pb-0 fs-4">Login to Your Account</h5>
+                        </div>
+
+                        @using (Html.BeginForm("Index", "Account", new { returnUrl = Model.ReturnUrl }, FormMethod.Post, true, new
+                        {
+                            id = "formLogin",
+                        }))
+                        {
+                            <div class="row g-3">
+
+                                <div class="col-12">
+                                    <label for="StaffId" class="form-label">Staff ID</label>
+                                    <div class="input-group has-validation">
+                                        @Html.TextBoxFor(model => model.StaffId, new { @class = "form-control login-staff-id", placeholder = "" })
+                                        <div class="invalid-feedback">
+                                            @Html.ValidationMessageFor(model => model.StaffId)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="Password" class="form-label">Password</label>
+
+                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control login-password", placeholder = "" })
+                                    <div class="invalid-feedback">
+                                        @Html.ValidationMessageFor(model => model.Password)
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="invalid-feedback">
+                                        @Html.ValidationMessageFor(model => model.Password)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <div>
+                                        <label>@Html.RadioButtonFor(model => model.IsSystemUser, false, new { @checked = true }) BFIL User </label> &nbsp;&nbsp;
+                                        <label>@Html.RadioButtonFor(model => model.IsSystemUser, true, new { @checked = true }) IBL CPU / System Admin</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    @Html.ValidationSummary(true)
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100" type="submit" onclick="validateLogin();" id="btnLogin">Login</button>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/account.js"></script>
+}

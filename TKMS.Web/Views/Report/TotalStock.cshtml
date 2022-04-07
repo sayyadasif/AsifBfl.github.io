@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Total Stock Report";
+}
+
+<partial name="_FilterReport" />
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <input type="hidden" value="totalStockReportDatatable" id="reportName" />
+
+                    <table id="totalStockReportDatatable" class="table datatable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>BFIL Branch <br />ID</th>
+                                <th>BFIL Branch <br />Name</th>
+                                <th>Total <br />Indented</th>
+                                <th>Total <br />Dispatched</th>
+                                <th>Total <br />Received</th>
+                                <th>Total <br />Allocated</th>
+                                <th>Total <br />Destructed</th>
+                                <th>Total <br />Assigned</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="~/js/report.js"></script>
+}

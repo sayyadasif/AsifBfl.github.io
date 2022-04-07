@@ -1,0 +1,154 @@
+﻿@model BranchDispatch
+@using TKMS.Abstraction.Models
+@using TKMS.Abstraction.ComplexModels
+@using Core.Utility.Utils
+
+@{
+    ViewData["Title"] = "Dispatch Detail";
+    DispatchModel dispatch = ViewBag.Dispatch;
+}
+<section class="section">
+
+    <div class="row row1">
+        <div class="col-md-1">
+            <a href="/Indent/DispatchedDetail/@dispatch.IndentId" class="backBtn"><img src="~/assets/img/next_side.png" /></a>
+        </div>
+        <div class="col-md-6 detail-heading-title">
+        </div>
+        <div class="col-md-5 text-right detail-heading-status">
+        </div>
+    </div>
+
+    <div class="row row2 dispatchBranchRow">
+        <div class="col-4">
+            <label class="control-label">Dispatch Date </label>
+            <div class="control-detail">
+                @CommonUtils.GetFormatedDate(dispatch.DispatchDate)
+            </div>
+        </div>
+        <div class="col-4">
+            <label class="control-label">A/c Start</label>
+            <div class="control-detail">
+                @dispatch.AccountStart
+            </div>
+        </div>
+        <div class="col-4">
+            <label class="control-label">A/c End</label>
+            <div class="control-detail">
+                @dispatch.AccountEnd
+            </div>
+        </div>
+        <div class="col-4">
+            <label class="control-label">Reference Number</label>
+            <div class="control-detail">
+                @dispatch.ReferenceNo
+            </div>
+        </div>
+        <div class="col-4">
+            <label class="control-label">Scheme Type</label>
+            <div class="control-detail">
+                @dispatch.SchemeType
+            </div>
+        </div>
+        <div class="col-4">
+            <label class="control-label">Quantity </label>
+            <div class="control-detail">
+                @dispatch.DispatchQty
+            </div>
+        </div>
+    </div>
+
+    <div class="container dispatchContainer">
+        @using (Html.BeginForm("BranchDispatch", "Indent", new { ReturnUrl = ViewBag.ReturnUrl },
+  FormMethod.Post, true, new { enctype = "multipart/form-data", @class = "form-horizontal form-bordered" }))
+        {
+            @Html.HiddenFor(model => model.BranchDispatchId)
+            @Html.HiddenFor(model => model.DispatchId)
+            @Html.HiddenFor(model => model.IndentId)
+
+            <div class="panel-body">
+                <div class="row g-3">
+                    <div class="col-4">
+                        <label class="control-label">Select Mode of Dispatch <span class="required-label">*</span></label>
+                        <div>
+                            <label>@Html.RadioButtonFor(model => model.DispatchMode, "Staff", new { @checked = true, onclick = "showBranchDispatch('staff', 'courier');", }) Staff </label> &nbsp;&nbsp;&nbsp;
+                            <label>@Html.RadioButtonFor(model => model.DispatchMode, "Courier", new { @checked = true, onclick = "showBranchDispatch('courier', 'staff');" }) Local Courier</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 staff @(Model.DispatchMode == "Staff" ? "" : "display-none")">
+                    <div class="col-4">
+                        <label class="control-label">Staff Id <span class="required-label">*</span></label>
+                        <div>
+                            @Html.TextBoxFor(model => model.StaffId, (new { @class = "form-control", placeholder = "Staff Id", }))
+                            <span style="color:red">
+                                @Html.ValidationMessageFor(model => model.StaffId)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Staff Name <span class="required-label">*</span></label>
+                        <div>
+                            @Html.TextBoxFor(model => model.StaffName, (new { @class = "form-control ", placeholder = "Staff Name", }))
+                            <span style="color:red">
+                                @Html.ValidationMessageFor(model => model.StaffName)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Staff Contact Number <span class="required-label">*</span></label>
+                        <div>
+                            @Html.TextBoxFor(model => model.StaffContactNo, (new { @class = "form-control ", placeholder = "Staff Contact Number", }))
+                            <span style="color:red">
+                                @Html.ValidationMessageFor(model => model.StaffContactNo)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 courier @(Model.DispatchMode == "Courier" ? "" : "display-none")">
+                    <div class="col-4">
+                        <label class="control-label">Local Courier Name <span class="required-label">*</span></label>
+                        <div>
+                            @Html.TextBoxFor(model => model.CourierName, (new { @class = "form-control ", placeholder = "Local Courier Name", }))
+                            <span style="color:red">
+                                @Html.ValidationMessageFor(model => model.CourierName)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <label class="control-label">Waybill Number <span class="required-label">*</span></label>
+                        <div>
+                            @Html.TextBoxFor(model => model.WayBillNo, (new { @class = "form-control ", placeholder = "Waybill Number", }))
+                            <span style="color:red">
+                                @Html.ValidationMessageFor(model => model.WayBillNo)
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="form-group col-md-12 branchDispatchRemarksBtn">
+                        <label class="control-label">Remarks (if any)</label>
+                        <div>
+                            @Html.TextBoxFor(model => model.Remarks, (new { @class = "form-control", placeholder = "Remarks", }))
+                            <span style="color:red">
+                                @Html.ValidationMessageFor(model => model.Remarks)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 BranchBtns">
+                    <div class="col-lg-12 text-right BranchBtns">
+                        <button type="submit" class="btn btn-primary legitRipple" onclick="showLoading();">Save<i class="icon-arrow-right14 position-right"></i></button>
+                        <button type="button" class="btn default" onclick="javascript: window.location.href = '@Url.Action("DispatchedDetail")/@dispatch.IndentId';">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/indent.js"></script>
+}

@@ -1,0 +1,62 @@
+﻿@model TKMS.Abstraction.ComplexModels.KitAllocateModel
+
+<div class="modal fade" id="kitAuthModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Loan Officer Authentication</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" value="" id="sentSmsId" />
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label class="form-label">Select Mode of Authentication</label>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-check-label ml-20 cursor-pointer" for="radioCredential">
+                            <input class="form-check-input" type="radio" name="auth-type" value="credential" onclick="showAuthMode('staff-credential', 'staff-otp');"
+                                   id="radioCredential" checked> Credential
+                        </label> &nbsp; &nbsp; &nbsp;
+                        @if (Model.AllowOTPAuth)
+                        {
+                            <label class="form-check-label ml-20 cursor-pointer" for="radioOtp">
+                                <input class="form-check-input" type="radio" name="auth-type" value="otp" onclick="showAuthMode('staff-otp', 'staff-credential');"
+                                       id="radioOtp"> OTP
+                            </label>
+                        }
+                    </div>
+                    <div class="col-12 staff-credential">
+                        <label for="staff-password" class="form-label">Password <span class="required-label">*</span></label>
+                        <input type="password" class="form-control" id="staff-password">
+                    </div>
+                    <div class="col-12 staff-otp display-none">
+                        <button type="button" class="btn btn-primary" id="btnSendOtp">Generate OTP</button>
+                        <div class="progress mt-3">
+                            <div id="progressBar" class="progress-bar progress-bar-striped bg-danger progress-bar-animated"
+                                 role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="30"></div>
+                        </div>
+                    </div>
+                    <div class="col-12 staff-otp display-none">
+                        <label for="staff-mobile" class="form-label">Mobile Number<span class="required-label">*</span></label>
+                        <input type="text" class="form-control" id="staff-mobile" placeholder="Mobile Number" readonly>
+                    </div>
+                    <div class="col-12 staff-otp display-none">
+                        <label for="staff-otp" class="form-label">OTP<span class="required-label">*</span></label>
+                        <input type="text" class="form-control" id="staff-otp" placeholder="OTP">
+                    </div>
+                    <div class="col-12">
+                        <div class="upload-error" id="authError">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn default cancelKit" data-bs-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-primary legitRipple submitKit" id="btnValidateAuth">Submit<i class="icon-arrow-right14 position-right"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

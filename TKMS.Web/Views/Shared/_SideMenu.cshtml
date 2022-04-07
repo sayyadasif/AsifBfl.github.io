@@ -1,0 +1,197 @@
+﻿@inject TKMS.Service.Interfaces.IUserProviderService userProviderService
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn closeSidebar" style="color: #98272A !important; font-weight: 700" onclick="closeNav()">x</a>
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item DashboardClass">
+            <a class="nav-link  @(Html.IsSelected("Home"))" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/images/Dashboard.png" class="img1 dasdboardImg" />
+                <img src="~/images/Dashboard Filled.png" class="img2 dasdboardImg" />
+                <span class="sidebarname" style=" margin-left: -31px;">Dashboard</span>
+                <span class="sidebarname2" style="margin-left: -41px !important;">Dashboard</span>
+            </a>
+        </li>
+
+        @if (userProviderService.ROIndentMaker() || userProviderService.ROKitManagement() || userProviderService.HOIndentMaker() ||
+userProviderService.HOApprover() || userProviderService.IBLCPU() || userProviderService.BM() || userProviderService.BCM())
+        {
+            <li class="nav-item IndnetClass IndentClass">
+                <a class="nav-link @(Html.IsSelected("Indent"))" asp-area="" asp-controller="Indent" asp-action="Index">
+                    <img src="~/images/Indent.png" class="img1 indentImg" />
+                    <img src="~/images/Indent Filled.png" class="img2 indentImg" />
+                    <span class="sidebarname">Indents</span>
+                    <span class="sidebarname2" style=" margin-left: -3px !important;">Indents</span>
+                </a>
+            </li>
+        }
+
+        @if (userProviderService.BM() || userProviderService.BCM())
+        {
+            <li class="nav-item KitsClass">
+                <a class="nav-link  @(Html.IsSelected("Kit"))" asp-area="" asp-controller="Kit" asp-action="Index">
+                    <img src="~/images/Kit.png" class="img1 kitImg" />
+                    <img src="~/images/Kit Filled.png" class="img2 kitImg" />
+                    <span class="sidebarname">Kits</span>
+                    <span class="sidebarname2" style=" margin-left: 20px !important;">Kits</span>
+                </a>
+            </li>
+        }
+        @if (userProviderService.Staff())
+        {
+            <li class="nav-item AssignmentClass">
+                <a class="nav-link  @(Html.IsSelected("Kit"))" asp-area="" asp-controller="Kit" asp-action="Index">
+                    <img src="~/images/Assignment.png" class="img1 AssignmentImg" />
+                    <img src="~/images/Assignment Filled.png" class="img2 AssignmentImg" />
+                    <span class="sidebarname">Assignment</span>
+                    <span class="sidebarname2" style="margin-left: -40px !important">Assignment</span>
+                </a>
+            </li>
+        }
+        @if (userProviderService.HOApprover() || userProviderService.IBLCPU())
+        {
+            <li class="nav-item DestructionClass">
+                <a class="nav-link  @(Html.IsSelected("Kit"))" asp-area="" asp-controller="Kit" asp-action="Index">
+                    <img src="~/images/Kit Destruction.png" class="img1 DestructionImg" />
+                    <img src="~/images/Kit Destruction Filled.png" class="img2 DestructionImg" />
+                    <span class="sidebarname">Kits Destruction</span>
+                    <span class="sidebarname2" style="margin-left: -76px !important">Kits Destruction</span>
+                </a>
+            </li>
+        }
+        @if (userProviderService.BM() || userProviderService.BCM())
+        {
+            <li class="nav-item BranchTransferClass">
+                <a class="nav-link  @(Html.IsSelected("BranchTransfer"))" asp-area="" asp-controller="BranchTransfer" asp-action="Index">
+                    <img src="~/images/Branch Transfer.png" class="img1 BranchTransferImg" />
+                    <img src="~/images/Branch Transfer Filled.png" class="img2 BranchTransferImg" />
+                    <span class="sidebarname branchTransferClassName">Branch Transfer</span>
+                    <span class="sidebarname2 branchTransferClassName">Branch Transfer</span>
+                </a>
+            </li>
+        }
+        @if (userProviderService.ROIndentMaker() || userProviderService.ROKitManagement() || userProviderService.HOIndentMaker() ||
+userProviderService.HOApprover() || userProviderService.IBLCPU() || userProviderService.BM() || userProviderService.BCM())
+        {
+            <li class="nav-item ReportsClass">
+                <a class="nav-link reportClass  @(Html.IsSelected("Report"))" asp-area="" asp-controller="Report" asp-action="Index">
+                    <img src="~/images/Report.png" class="img1 ReportsImg" />
+                    <img src="~/images/Report Filled.png" class="img2 ReportsImg" />
+                    <span class="sidebarname reportsClassName">Reports</span>
+                    <span class="sidebarname2 reportsClassName">Reports</span>
+                </a>
+            </li>
+        }
+        @if (userProviderService.SystemAdmin())
+        {
+            <li class="nav-item UserClass">
+                <a class="nav-link sideClass  @(Html.IsSelected("User"))" asp-area="" asp-controller="User" asp-action="Index">
+                    <img src="~/images/User.png" class="img1 UserImg" />
+                    <img src="~/images/User Filled.png" class="img2 UserImg" />
+                    <span class="sidebarname3 userClassName">Users</span>
+                    <span class="sidebarname4 userClassName">Users</span>
+                </a>
+            </li>
+        }
+        @if (userProviderService.SystemAdmin())
+        {
+            <li class="nav-item BranchesClass">
+                <a class="nav-link sideClass @(Html.IsSelected("Branch"))" asp-area="" asp-controller="Branch" asp-action="Index">
+                    <img src="~/images/Branch.png" class="img1 BranchImg" />
+                    <img src="~/images/Branch Filled.png" class="img2 BranchImg" />
+                    <span class="sidebarname3 branchClassName">Branches</span>
+                    <span class="sidebarname4 branchClassName">Branches</span>
+                </a>
+            </li>
+        }
+        @if (userProviderService.SystemAdmin())
+        {
+            <li class="nav-item IBLBranchesClass">
+                <a class="nav-link sideClass @(Html.IsSelected("IblBranch"))" asp-area="" asp-controller="IblBranch" asp-action="Index">
+                    <img src="~/images/Branch.png" class="img1 BranchImg" />
+                    <img src="~/images/Branch Filled.png" class="img2 BranchImg" />
+                    <span class="sidebarname3 branchClassName">IBL Branches</span>
+                    <span class="sidebarname4 branchClassName2">IBL Branches</span>
+                </a>
+            </li>
+        }
+        @if (userProviderService.SystemAdmin())
+        {
+            <li class="nav-item RegionsClass">
+                <a class="nav-link sideClass  @(Html.IsSelected("Region"))" asp-area="" asp-controller="Region" asp-action="Index">
+                    <img src="~/images/Region.png" class="img1 RegionImg" />
+                    <img src="~/images/Region Filled.png" class="img2 RegionImg" />
+                    <span class="sidebarname3 regionClassName">Regions</span>
+                    <span class="sidebarname4 regionClassName">Regions</span>
+                </a>
+            </li>
+
+        }
+        @if (userProviderService.SystemAdmin())
+        {
+            <li class="nav-item schemeCodeClass">
+                <a class="nav-link sideClass  @(Html.IsSelected("SchemeCode"))" asp-area="" asp-controller="SchemeCode" asp-action="Index">
+                    <img src="~/images/Scheme Code.png" class="img1 SchemeCodeImg" />
+                    <img src="~/images/Scheme Code Filled.png" class="img2 SchemeCodeImg" />
+                    <span class="sidebarname3 schemeCodeClassName">Scheme Codes</span>
+                    <span class="sidebarname4 schemeCodeClassName">Scheme Codes</span>
+                </a>
+            </li>
+
+        }
+        @if (userProviderService.SystemAdmin())
+        {
+            <li class="nav-item C5CodeClass">
+                <a class="nav-link sideClass  @(Html.IsSelected("C5Code"))" asp-area="" asp-controller="C5Code" asp-action="Index">
+                    <img src="~/images/C5 Code.png" class="img1 C5CodeImg" />
+                    <img src="~/images/C5 Code Filled.png" class="img2 C5CodeImg" />
+                    <span class="sidebarname3 C5CodeClassName">C5 Codes</span>
+                    <span class="sidebarname4 C5CodeClassName" style=" margin-left: -38px; ">C5 Codes</span>
+                </a>
+            </li>
+
+        }
+        @if (userProviderService.SystemAdmin())
+        {
+            <li class="nav-item CardTypeClass">
+                <a class="nav-link sideClass  @(Html.IsSelected("CardType"))" asp-area="" asp-controller="CardType" asp-action="Index">
+                    <img src="~/images/Card Type.png" class="img1 CardTypeImg" />
+                    <img src="~/images/Card Type Filled.png" class="img2 CardTypeImg" />
+                    <span class="sidebarname3 CardTypeClassName">Card Types</span>
+                    <span class="sidebarname4 CardTypeClassName" style=" margin-left: -38px; ">Card Types</span>
+                </a>
+            </li>
+
+        }
+        @if (userProviderService.SystemAdmin())
+        {
+            <li class="nav-item DefaultKitClass">
+                <a class="nav-link  @(Html.IsSelected("DefaultKit"))" asp-area="" asp-controller="DefaultKit" asp-action="Index">
+                    <img src="~/images/Kit.png" class="img1 DefaultKitImg" />
+                    <img src="~/images/Kit Filled.png" class="img2 DefaultKitImg" />
+                    <span class="sidebarname DefaultKitClassName">Default Kits</span>
+                    <span class="sidebarname2 DefaultKitClassName2">Default Kits</span>
+                </a>
+            </li>
+        }
+        @if (userProviderService.SystemAdmin())
+        {
+            <li class="nav-item SettingsClass">
+                <a class="nav-link  @(Html.IsSelected("Setting"))" asp-area="" asp-controller="Setting" asp-action="Index">
+                    <img src="~/images/Settings.png" class="settinsImg img1" />
+                    <img src="~/images/Settings Filled.png" class="settinsImg img2" />
+                    <span class="sidebarname settingsClassName">Settings</span>
+                    <span class="sidebarname2 settingsClassName">Settings</span>
+                </a>
+            </li>
+        }
+        <li class="nav-item logOutClass">
+            <a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">
+                <img src="~/images/LogOut.png" class="LogoutImg" />
+                <span class="logOutName">Log Out</span>
+            </a>
+        </li>
+    </ul>
+
+</aside>
+<!-- End Sidebar-->

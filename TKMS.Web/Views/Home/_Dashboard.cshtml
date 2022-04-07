@@ -1,0 +1,187 @@
+﻿@model TKMS.Abstraction.ComplexModels.DashboardModel
+@inject TKMS.Service.Interfaces.IUserProviderService userProviderService
+@using Core.Utility.Utils
+
+<section class="section dashboard">
+    <input type="hidden" value="@(userProviderService.ROIndentMaker() || userProviderService.ROKitManagement() || userProviderService.HOIndentMaker())" id="chartIndent" />
+    <input type="hidden" value="@(userProviderService.BM() || userProviderService.BCM())" id="chartKit" />
+
+    <div class="row">
+        @foreach (var card in Model.DisplayCards)
+        {
+            <partial name="_DisplayCard" model="card" />
+        }
+    </div>
+
+    @if (userProviderService.BM() || userProviderService.BCM())
+    {
+        <div class="row">
+            @foreach (var card in Model.KitCards)
+            {
+                <partial name="_DisplayCard" model="card" />
+            }
+            <div class="col-md-6">
+                <div class="card info-card col-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xxl-3 col-md-3 kitsAllocationCard">
+                                <h5 class="card-title kitsAllocationCardName">@Html.Raw(@Model.KitsAllocationCard.CardTitle)</h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div class="ps-3 kitsValue">
+                                        <h6>@Html.Raw(@Model.KitsAllocationCard.CardDetail)</h6>
+                                        @*<span class="text-success small pt-1 fw-bold"><a href="@Model.KitsAllocationCard.CardUrl">@Model.KitsAllocationCard.CardLinkText</a></span>*@
+                                    </div>
+                                </div>
+                                <div class="viewBtnClass viewBtnIndent1">
+                                    <span class="text-success small pt-1 fw-bold"><a class="viewBtnIndent" href="@Model.KitsAllocationCard.CardUrl">@Model.KitsAllocationCard.CardLinkText</a></span>
+                                </div>
+                            </div>
+
+                            @foreach (var item in Model.KitAllocationAge)
+                            {
+                                <div class="col-xxl-3 col-md-3 kitsAllocationCard1">
+                                    <h5 class="card-title kitsAllocationCard1Name">@Html.Raw(item.StatusName)</h5>
+
+                                    <div class="d-flex align-items-6center">
+                                        <div class="ps-3 kitsValue1">
+                                            <h6>@Html.Raw(item.Count)</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card RemainderCard">
+                    <div class="filter">
+                        <a class="icon" asp-controller="Notification" asp-action="Index">View All</a>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Reminders</h5>
+                        <div class="list-group">
+                            @foreach (var notification in Model.Notifications)
+                            {
+                                <a href="@notification.RedirectUrl" class="list-group-item list-group-item-action" aria-current="true">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h5 class="mb-1 notificationTitle">@notification.Title</h5>
+                                        <small>
+                                            @CommonUtils.GetFormatedDate(notification.NotificationDate)
+                                        </small>
+                                    </div>
+                                    <p class="mb-1 notificationDescription">@Html.Raw(notification.Description)</p>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card info-card col-12" style="height: 270px;">
+                    <div class="card-body">
+                        <h5 class="card-title">Kit Status Overview</h5>
+                        <div class="d-flex align-items-center">
+                            <canvas id="pieKitChart" legend-position="right" style="max-height: 200px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    @if (Model.DisplayRejected)
+                    {
+                        <div class="col-9">
+                            <partial name="_Rejected" />
+
+                        </div>
+                        <div class="col-3">
+                            @if (!string.IsNullOrEmpty(Model.NoOfKitsCard.CardDetail))
+                            {
+                                <div class="card info-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Html.Raw(Model.NoOfKitsCard.CardTitle)</h5>
+
+                                        <div class="d-flex align-items-center">
+                                            <div class="ps-3">
+                                                <h6>@Html.Raw(Model.NoOfKitsCard.CardDetail)</h6>
+                                                @*<span class="text-success small pt-1 fw-bold"><a class="viewBtnIndent" href="@Model.NoOfKitsCard.CardUrl">@Model.NoOfKitsCard.CardLinkText</a></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="viewBtnClass">
+                                            <span class="text-success small pt-1 fw-bold"><a class="viewBtnIndent" href="@Model.NoOfKitsCard.CardUrl">@Model.NoOfKitsCard.CardLinkText</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.KitDestruction.CardDetail))
+                            {
+                                <div class="card info-card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">@Html.Raw(Model.KitDestruction.CardTitle)</h5>
+
+                                        <div class="d-flex align-items-center">
+                                            <div class="ps-3">
+                                                <h6>@Html.Raw(Model.KitDestruction.CardDetail)</h6>
+                                                @*<span class="text-success small pt-1 fw-bold"><a href="@Model.KitDestruction.CardUrl">@Model.KitDestruction.CardLinkText</a></span>*@
+                                            </div>
+                                        </div>
+                                        <div class="viewBtnClass">
+                                            <span class="text-success small pt-1 fw-bold"><a class="viewBtnIndent" href="@Model.KitDestruction.CardUrl">@Model.KitDestruction.CardLinkText</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (userProviderService.ROIndentMaker() || userProviderService.ROKitManagement() || userProviderService.HOIndentMaker())
+                            {
+                                <div class="card info-card statusOverview" style="height: 270px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Indents Status Overview</h5>
+                                        <div class="d-flex align-items-center">
+                                            <canvas id="pieIndentChart" legend-position="bottom" style="max-height: 240px;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    @if (Model.DisplayDispatched)
+                    {
+                        <div class="col-6">
+                            <div class="row">
+                                @foreach (var card in Model.DispatchCards)
+                                {
+                                    <partial name="_DispatchCard" model="card" />
+                                }
+                            </div>
+                            <div class="row">
+                                <div class="card info-card col-lg-12 " style="height: 270px;">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Indents Status Overview</h5>
+                                        <div class="d-flex align-items-center">
+                                            <canvas id="pieIndentChart" legend-position="right" style="max-height: 200px;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <partial name="_Dispatched" />
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+
+</section>

@@ -1,0 +1,268 @@
+@model TKMS.Abstraction.Models.Indent
+@{
+    ViewData["Title"] = (Model.IndentId > 0) ? "Edit Indent" : "Create New Indent ";
+}
+
+<section class="section">
+
+    @using (Html.BeginForm("Manage", "Indent", new { ReturnUrl = ViewBag.ReturnUrl },
+FormMethod.Post, true, new { id = "formIndent", enctype = "multipart/form-data", @class = "form-horizontal form-bordered" }))
+    {
+        @Html.HiddenFor(model => model.IndentId)
+        @Html.HiddenFor(model => model.IndentStatusId)
+        <div class="panel panel-flat">
+
+            <div class="row row1">
+                <div class="col-md-1">
+                    <a href="/Indent" class="backBtn backBtnIndent"><img src="~/assets/img/next_side.png" /></a>
+                </div>
+
+                <div class="col-md-6 detail-heading-title">
+                    <div class="panel-heading">
+                        <h5 class="panel-title createNewIndentTitle" id="panel-title">@ViewBag.Title<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+                    </div>
+                </div>
+                <div class="col-md-5 text-right detail-heading-status ">
+                    @if (Model.RejectionReasonId.HasValue && Model.RejectionReasonId > 0)
+                    {
+                        <div class="rejectionReason rejectedStatus">
+                            Rejection Reason : @Model.RejectionReason
+                        </div>
+                    }
+                    @if (Model.IndentId == 0)
+                    {
+                        <button type="button" onclick="uploadIndent();" class="btn btn-outline-primary excelBtn">Upload Excel</button>
+                    }
+                </div>
+
+
+            </div>
+
+            <section class="section">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4 mt-4">
+                                        <label class="control-label form-label Indent-text">Indent Date <span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.TextBoxFor(model => model.IndentDate, new { @class = "form-control datepickerDate indent-formbackground", placeholder = "Indent Date", @readonly = "readonly" })
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.IndentDate)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mt-4">
+                                        <label class="control-label form-label Indent-text">Indent Number<span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.TextBoxFor(model => model.IndentNo, new { @class = "form-control indent-formbackground", placeholder = "Indent Number", @readonly = "readonly" })
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.IndentNo)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mt-4">
+                                        <label class="control-label form-label Indent-text">No of Kits Required <span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.TextBoxFor(model => model.NoOfKit, (new { @class = "form-control Indent-dropdown", placeholder = "No of Kits Required", }))
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.NoOfKit)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row g-3">
+                                    <div class="col-md-2 mt-4">
+                                        <label class="control-label form-label Indent-text">BFIL Address Type <span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.DropDownListFor(model => model.BfilBranchTypeId, (List<SelectListItem>)ViewBag.BranchTypes, (new { @class = "form-control dropdownlist" }))
+
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.BfilBranchTypeId)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 mt-4">
+                                        <label class="control-label form-label Indent-text">BFIL Region <span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.DropDownListFor(model => model.BfilRegionId, (List<SelectListItem>)ViewBag.Regions, (new { @class = "form-control dropdownlist", onchange = "GetAddress(this); GetBranches(this); ", }))
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.BfilRegionId)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mt-4">
+                                        <label class="control-label form-label Indent-text">BFIL Branch Code <span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.DropDownListFor(model => model.BfilBranchId, (List<SelectListItem>)ViewBag.BfilBranches, (new { @class = "form-control dropdownlist", onchange = "GetBranch(this); ", }))
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.BfilBranchId)
+                                            </span>
+                                            @Html.Hidden("BfilBranchIdVal", Model.BfilBranchId)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mt-4">
+                                        <label class="control-label form-label Indent-text">
+                                            IBL Branch <span class="required-label">*</span>
+                                        </label>
+                                        <div>
+                                            @Html.DropDownListFor(model => model.IblBranchId, (List<SelectListItem>)ViewBag.IblBranches, (new { @class = "form-control dropdownlist Indent-dropdown" }))
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.IblBranchId)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-4 mt-4">
+                                        <label class="control-label form-label Indent-text">Scheme Code<span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.DropDownListFor(model => model.SchemeCodeId, (List<SelectListItem>)ViewBag.SchemeCodes, (new { @class = "form-control dropdownlist Indent-dropdown" }))
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.SchemeCodeId)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mt-4">
+                                        <label class="control-label form-label Indent-text">C5 Code<span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.DropDownListFor(model => model.C5CodeId, (List<SelectListItem>)ViewBag.C5Codes, (new { @class = "form-control dropdownlist Indent-dropdown" }))
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.C5CodeId)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mt-4">
+                                        <label class="control-label form-label Indent-text">Card Type<span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.DropDownListFor(model => model.CardTypeId, (List<SelectListItem>)ViewBag.CardTypes, (new { @class = "form-control dropdownlist Indent-dropdown" }))
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.CardTypeId)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-8 mt-4">
+                                        <label class="control-label form-label Indent-text">Dispatch Branch Address <span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.TextBoxFor(model => model.DispatchAddress.AddressDetail, new { id = "addressDetail", @class = "form-control", placeholder = "Address" })
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.DispatchAddress.AddressDetail)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mt-4">
+                                        <label class="control-label form-label Indent-text">Pincode <span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.TextBoxFor(model => model.DispatchAddress.PinCode, new { id = "pinCode", @class = "form-control", placeholder = "Pincode" })
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.DispatchAddress.PinCode)
+                                            </span>
+                                        </div>
+                                        @Html.HiddenFor(model => model.DispatchAddressId)
+                                        @Html.HiddenFor(model => model.IsAddressUpdated)
+                                        @Html.Hidden("oldAddress")
+                                        @Html.Hidden("oldPinCode")
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-4 mt-4">
+
+                                        <label class="control-label form-label Indent-text">Contact Person <span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.TextBoxFor(model => model.ContactName, new { @class = "form-control", placeholder = "Contact Person" })
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.ContactName)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mt-4">
+
+                                        <label class="control-label form-label Indent-text">Contact Number <span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.TextBoxFor(model => model.ContactNo, new { @class = "form-control", placeholder = "Contact Number" })
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.ContactNo)
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mt-4">
+
+                                        <label class="control-label form-label Indent-text">IFSC Code <span class="required-label">*</span></label>
+                                        <div>
+                                            @Html.TextBoxFor(model => model.IfscCode, new { @class = "form-control indent-formbackground", placeholder = "IFSC Code", @readonly = "readonly" })
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.IfscCode)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-12 mt-4">
+                                        <label class="control-label form-label Indent-text">Remarks</label>
+                                        <div>
+                                            @Html.TextAreaFor(model => model.Remarks, new { @class = "form-control", placeholder = "Remarks" })
+                                            <span style="color:red">
+                                                @Html.ValidationMessageFor(model => model.Remarks)
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="form-group">
+                                        <div class="col-lg-12 text-right">
+                                            @*<button type="submit" class="btn btn-primary legitRipple" onclick="validateIndent();">Save<i class="icon-arrow-right14 position-right"></i></button>
+                                                <button type="button" class="btn default" onclick="javascript: window.location.href = '@Url.Action("Index")';">Cancel</button>*@
+
+                                            <button type="button" class="btn default cancelIndent" onclick="javascript: window.location.href = '@Url.Action("Index")';">Cancel</button>
+                                            <button type="submit" class="btn btn-primary legitRipple SubmitIndent" onclick="return validateIndent();">Submit<i class="icon-arrow-right14 position-right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    }
+    </div>
+
+    <div class="modal fade" id="uploadExcelModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Indent Excel</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-12">
+                        <a href="~/Samples/IndentDetails.xlsx">Sample Excel</a>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <input type="file" id="indentFileUpload" class="form-control" accept=".xlsx, .xls" />
+                        </div>
+                        <div class="col-12">
+                            <div class="upload-error" id="indentUploadError">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close_btn" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary btn-brown upload_btn" id="btnIndentUpload">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/indent.js"></script>
+}

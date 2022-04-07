@@ -1,0 +1,50 @@
+﻿@model List<TKMS.Abstraction.Models.Setting>
+@{
+    ViewData["Title"] = "Settings";
+}
+
+<section class="section">
+    <div class="row row1">
+        <div class="col-lg-12">
+
+            @using (Html.BeginForm("Index", "Setting", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true, new { enctype = "multipart/form-data", @class = "form-horizontal form-bordered" }))
+            {
+
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    @Html.HiddenFor(model => model[i].SettingId)
+                    @Html.HiddenFor(model => model[i].SettingName)
+                    @Html.HiddenFor(model => model[i].SettingDesc)
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@Model[i].SettingName</h5>
+
+                            <div class="row mb-3">
+                                <div class="col-sm-12">
+                                    @Html.TextBoxFor(model => model[i].SettingValue, (new { @class = "form-control ", placeholder = "Setting Value", }))
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-12">
+                                    @Model[i].SettingDesc
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="row g-3">
+                    <div class="col-12 text-right">
+                        <button type="submit" class="btn btn-primary legitRipple" onclick="showLoading();">Save<i class="icon-arrow-right14 position-right"></i></button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

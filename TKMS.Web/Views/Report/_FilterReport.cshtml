@@ -1,0 +1,104 @@
+﻿
+<div class="row row1 rowReports">
+    <div class="col-md-1">
+        <a href="/Report/Index" class="backBtn"><img src="/assets/img/next_side.png"></a>
+    </div>
+
+    <div class="col-md-6 detail-heading-title">
+        @ViewData["Title"]
+    </div>
+
+    <div class="col-md-5 text-right detail-heading-status ">
+        <button id="btn-copy-export" class="copyBtn">
+            <span style=" margin-left: -92px; font-weight: 700"><img src="~/assets/img/Copy.png" />Copy</span>
+        </button>
+        <button id="btn-csv-export" class="DownlodCSV">
+            <span  style=" margin-left: -15px; font-weight: 700">
+                <img src="~/assets/img/Download.png" alt="Alternate Text" />
+                Download CSV
+            </span>
+        </button>
+    </div>
+
+</div>
+<div class="ReportsShow btn-filter  display-none ">
+    <button class="showFilterBtn" id="showBtn" value="Show Filters" onclick="showFilter()">
+        <span class="FilterName"><img src="~/assets/img/Filter.png" />Show Filters</span>
+    </button>
+
+</div>
+
+<div class="row filter-detail" id="ReportsFilter">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                @*<h5 class="page-title">@ViewData["Title"]</h5>*@
+                <div class="HideBtn1">
+                    <button class="hideFilterBtn" id="hideBtn" value="Hide Filters" onclick="hideFilter()">
+                        <span class="FilterName" style=" margin-left: -77px"><img src="~/assets/img/Filter.png" />Hide Filters</span>
+                    </button>
+                </div>
+                <div class="row g-3">
+                    <div class="col-2" id="indentNoFilter">
+                        <input type="text" class="form-control" placeholder="Indent Number" id="indentNo" />
+                    </div>
+                    <div class="col-2" id="referenceNoFilter">
+                        <input type="text" class="form-control" placeholder="Reference Number" id="referenceNo" />
+                    </div>
+                    <div class="col-2" id="wayBillNoFilter">
+                        <input type="text" class="form-control" placeholder="Way Bill No" id="wayBillNo" />
+                    </div>
+                    <div class="col-2" id="accountNoFilter">
+                        <input type="text" class="form-control" placeholder="Account No" id="accountNo" />
+                    </div>
+                    <div class="col-2" id="cifNoFilter">
+                        <input type="text" class="form-control" placeholder="CIF No" id="cifNo" />
+                    </div>
+                    <div class="col-2" id="indentStartDateFilter">
+                        <input type="text" class="form-control datepicker" placeholder="Indent Start Date" id="indentStartDate" />
+                    </div>
+                    <div class="col-2" id="indentEndDateFilter">
+                        <input type="text" class="form-control datepicker" placeholder="Indent End Date" id="indentEndDate" />
+                    </div>
+                    <div class="col-2" id="dispatchStartDateFilter">
+                        <input type="text" class="form-control datepicker" placeholder="Dispatch Start Date" id="dispatchStartDate" />
+                    </div>
+                    <div class="col-2" id="dispatchEndDateFilter">
+                        <input type="text" class="form-control datepicker" placeholder="Dispatch End Date" id="dispatchEndDate" />
+                    </div>
+                    <div class="col-2" id="deliveryStartDateFilter">
+                        <input type="text" class="form-control datepicker" placeholder="Delivery Start Date" id="deliveryStartDate" />
+                    </div>
+                    <div class="col-2" id="deliveryEndDateFilter">
+                        <input type="text" class="form-control datepicker" placeholder="Delivery End Date" id="deliveryEndDate" />
+                    </div>
+                    <div class="col-2" id="branchIdFilter">
+                        @Html.DropDownList("branchId", (List<SelectListItem>)ViewBag.Branches, (new { @class = "form-control dropdownlist", }))
+                    </div>
+                    <div class="col-2" id="schemeCodeIdFilter">
+                        @Html.DropDownList("schemeCodeId", (List<SelectListItem>)ViewBag.SchemeCodes, (new { @class = "form-control dropdownlist", }))
+                    </div>
+                    <div class="col-2" id="c5CodeIdFilter">
+                        @Html.DropDownList("c5CodeId", (List<SelectListItem>)ViewBag.C5Codes, (new { @class = "form-control dropdownlist", }))
+                    </div>
+                    <div class="col-2" id="cardTypeIdFilter">
+                        @Html.DropDownList("cardTypeId", (List<SelectListItem>)ViewBag.CardTypes, (new { @class = "form-control dropdownlist", }))
+                    </div>
+                    <div class="col-2" id="bfilRegionIdFilter">
+                        @Html.DropDownList("bfilRegionId", (List<SelectListItem>)ViewBag.Regions, (new { @class = "form-control dropdownlist", }))
+                    </div>
+                    <div class="col-2" id="bfilBranchTypeIdFilter">
+                        @Html.DropDownList("bfilBranchTypeId", (List<SelectListItem>)ViewBag.BranchTypes, (new { @class = "form-control dropdownlist", }))
+                    </div>
+                    <div class="col-2" id="bfilBranchIdFilter">
+                        @Html.DropDownList("bfilBranchId", (List<SelectListItem>)ViewBag.BfilBranches, (new { @class = "form-control dropdownlist", }))
+                    </div>
+                    <div class="col-4">
+                        <button id="btnReportFilter" class="btn btn-success searchBtn GenerateReport">Generate Report</button>&nbsp;
+                        <button id="btnReportFilterClear" class="btn btn-secondary clearBtn ClearFilter">Clear All Filters</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

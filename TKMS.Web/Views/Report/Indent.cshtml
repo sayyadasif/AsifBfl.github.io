@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Indent Report";
+}
+
+
+<partial name="_FilterReport" />
+
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <input type="hidden" value="indentReportDatatable" id="reportName" />
+                    <table id="indentReportDatatable" class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Indent<br /> Number</th>
+                                <th>Indent<br /> Date</th>
+                                <th>Indent<br /> Branch Name</th>
+                                <th>Scheme<br /> Code</th>
+                                <th>C5<br /> Code</th>
+                                <th>Card Type</th>
+                                <th>No. of Kit<br /> Required</th>
+                                <th>Branch<br /> Type</th>
+                                <th>Dispatch<br /> Address</th>
+                                <th>BFIL<br /> Branch Code</th>
+                                <th>Pincode</th>
+                                <th>Contact<br /> Person</th>
+                                <th>Contact<br /> Number</th>
+                                <th>Indented<br /> User Type</th>
+                                <th>Indented<br /> By</th>
+                                <th>BFIL Indent<br /> HO  Status</th>
+                                <th>BFIL Indent <br /> HO ApproveBy</th>
+                                <th>Ho Approve<br /> Date</th>
+                                <th>Cpu Indent<br /> Status</th>
+                                <th>Cpu Indent<br />HO Approve By</th>
+                                <th>Cpu Approve <br />Date</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    <script src="~/js/report.js"></script>
+}
